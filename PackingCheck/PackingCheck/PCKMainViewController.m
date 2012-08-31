@@ -37,7 +37,7 @@
         [items addObject:menuItem];
     }
     
-    _board = [PCKSpringBoard initWithTitle:@"行囊" items:items launcherImage:[UIImage imageNamed:@"navbtn_home.png"]];
+    _board = [PCKSpringBoard initWithTitle:@"行囊检查" items:items launcherImage:[UIImage imageNamed:@"navbtn_home.png"]];
     [self.view addSubview:_board];
 
 }

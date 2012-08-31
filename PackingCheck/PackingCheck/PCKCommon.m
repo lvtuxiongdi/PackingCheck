@@ -34,6 +34,7 @@
     return _dottedColor;
 }
 
+
 +(UIColor*)transparent
 {
     static UIColor * _transparent = nil;
@@ -88,6 +89,16 @@
     return _tableBackgroundColor;
     
 }
+
++(UIColor*)smallBackgroundColor
+{
+    static UIColor * _dottedColor = nil;
+    if(!_dottedColor){
+        _dottedColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_small"]];
+    }
+    return _dottedColor;
+}
+
 
 // fonts
 +(UIFont*) bigFont

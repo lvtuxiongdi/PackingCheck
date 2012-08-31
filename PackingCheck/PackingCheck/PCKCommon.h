@@ -26,6 +26,7 @@
 +(UIColor*)cellLabelColor;
 +(UIColor*)inputColor;
 +(UIColor*)tableBackground;
++(UIColor*)smallBackgroundColor;
 
 
 // fonts

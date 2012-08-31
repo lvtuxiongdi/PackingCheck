@@ -35,8 +35,7 @@
 }
 
 - (void)increaseOpens
-{
-    NSLog(@"incr");
+{    
     FMDatabase* db = [PCKCommon database];
     [db executeUpdate:@"UPDATE check_list SET opens=opens+1 WHERE id=?", [NSNumber numberWithInt:self.listId]];
 }

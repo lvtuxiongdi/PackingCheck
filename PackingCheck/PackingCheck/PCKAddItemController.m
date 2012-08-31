@@ -17,6 +17,7 @@
     UITableView * _tableView;
     UITextField* _searchBar;
     PCKIndexedItems* _indexItems;
+    NSMutableArray* _items;
 }
 
 @end
@@ -114,8 +115,8 @@
 
 -(void)loadData
 {
-    NSArray * items = [PCKItem all]; 
-    _indexItems = [[PCKIndexedItems alloc] initWithItems:(NSArray*)items]; 
+    _items = [PCKItem all]; 
+    _indexItems = [[PCKIndexedItems alloc] initWithItems:_items]; 
 }
 
 - (void)viewDidLoad
@@ -168,16 +169,19 @@
     return [_indexItems.indexNames count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ItemCell";
     UITableViewCell *cell = (UITableViewCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];  
-        //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [PCKCommon bigFont];
         cell.textLabel.textColor = [PCKCommon cellLabelColor];
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     
     PCKItem * item = [[_indexItems itemsAtIndexNumber:indexPath.section] objectAtIndex:indexPath.row];

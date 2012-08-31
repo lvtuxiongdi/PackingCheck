@@ -61,7 +61,7 @@
 - (void)loadView
 {
     [super loadView];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [PCKCommon smallBackgroundColor];
     [self loadNavBar];
     [self loadNameField];
 }

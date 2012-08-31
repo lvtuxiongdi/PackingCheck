@@ -7,6 +7,7 @@
 //
 
 #import "PCKConfigViewController.h"
+#import "PCKCommon.h"
 
 @interface PCKConfigViewController ()
 
@@ -43,11 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
+    
+    self.view.backgroundColor = [PCKCommon smallBackgroundColor];
     self.view.frame = CGRectMake(0, 0, 320, 120);
     
-    self.createListButton = [self controlButtonWithTitle:@"创建清单" frame:CGRectMake(20, 20, 70,70)];
-    self.itemsButton = [self controlButtonWithTitle:@"所有物品" frame:CGRectMake(110, 20, 70,70)];
+    self.createListButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(20, 20, 70,70)];
+    self.itemsButton = [self controlButtonWithTitle:@"反馈" frame:CGRectMake(110, 20, 70,70)];
     
     [self.view addSubview:self.createListButton];    
     [self.view addSubview:self.itemsButton];

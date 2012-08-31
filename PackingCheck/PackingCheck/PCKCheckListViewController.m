@@ -4,6 +4,7 @@
 #import "PCKItem.h"
 #import "PCKBuyButton.h"
 #import "PCKAddItemController.h"
+#import "PCKCommon.h"
 
 @interface PCKCheckListViewController(){
     NSMutableSet * _checkedItems;
@@ -73,30 +74,35 @@
 
 - (void)loadToolBar
 {
-    PCKBuyButton *resetButton = [[PCKBuyButton alloc]initWithFrame:CGRectMake(10.0, 0.0, 70.0, 30.0)];
+    
+    CGRect tvFrame = self.view.bounds;
+    UIView * toolbar = [[UIView alloc]initWithFrame:CGRectMake(0, tvFrame.size.height - 100, tvFrame.size.width, 100)];
+    toolbar.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:toolbar];
+    
+    PCKBuyButton *resetButton = [[PCKBuyButton alloc]initWithFrame:CGRectMake(100.0, 10.0, 70.0, 30.0)];
     [resetButton addTarget:self action:@selector(checkSwitch:) forControlEvents:UIControlEventTouchUpInside];
     [resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
     [resetButton setTitle:@"结束检查" forState:UIControlStateSelected];
-	resetButton.center = self.view.center;
+
 	[resetButton setBuyBlock:^(void){
         NSLog(@"buy");
     }];
     
-    UIBarButtonItem *buttonCheck = [[ UIBarButtonItem alloc ]initWithCustomView:resetButton];
+    [toolbar addSubview:resetButton];
     
-    NSArray *toolBarItems = [[NSArray alloc] initWithObjects:buttonCheck, nil];
-    self.toolbarItems = toolBarItems;
-    // TODO make it looks better 
-    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(240.0f, 4.0f, 36.0f, 36.0f)];
+    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(260.0f, 4.0f, 36.0f, 36.0f)];
+    [toolbar addSubview:self.progressView];
 }
 
 - (void)loadItemTable
 {
     CGRect tvFrame = self.view.bounds;
-    tvFrame.size = CGSizeMake(tvFrame.size.width, tvFrame.size.height - 80);
+    tvFrame.size = CGSizeMake(tvFrame.size.width, tvFrame.size.height - 100);
     self.tableView = [[UITableView alloc] initWithFrame:tvFrame style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [PCKCommon tableBackground];
     [self.view addSubview:self.tableView];
     [self loadItems];
 }
@@ -144,16 +150,16 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // place any dynamic stuff you want to initialize in the child view here
-    [self.navigationController.toolbar addSubview:self.progressView];
+//    [self.navigationController.toolbar addSubview:self.progressView];
     
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;    
-    self.navigationController.toolbar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+//    self.navigationController.toolbar.tintColor = [UIColor blackColor];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:NO];
+//    [self.navigationController setToolbarHidden:NO];
 }
 
 
@@ -174,8 +180,11 @@
     if (cell == nil) {
         cell = [[PCKCheckItemCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont systemFontOfSize: 18];
+
+        cell.textLabel.font = [UIFont boldSystemFontOfSize: 18];
+
         cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.badgeColorHighlighted = [UIColor whiteColor];
         cell.delegate = self;
     }
 
@@ -199,10 +208,12 @@
     
     if (_isChecking){
         cell.direction = PCKCheckItemCellDirectionBoth;
-        cell.contentView.backgroundColor = [UIColor yellowColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sliced_bg_green"]];
     }else {
         cell.direction = PCKCheckItemCellDirectionNone;
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.contentView.backgroundColor = [PCKCommon tableBackground];
     }
 
     return cell;
