@@ -32,6 +32,8 @@
 // fonts
 +(UIFont*) bigFont;
 
+// utils
++(NSMutableArray*) filterItems:(NSArray*)items excludeIds:(NSSet*)ids;
 
 
 @end

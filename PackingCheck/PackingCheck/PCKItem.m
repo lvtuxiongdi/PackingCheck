@@ -8,9 +8,11 @@
 
 #import "PCKItem.h"
 #import "pinyin.h"
+#import "PCKCommon.h"
 
 @implementation PCKItem
 @synthesize itemId=_itemId, name=_name;
+
 - (id)initWithId:(int)itemId name:(NSString*)name
 {
     self = [super init];
@@ -39,6 +41,26 @@
 {
     return [self find:@"SELECT * FROM item"];
 }
+
++ (PCKItem*)createWithName:(NSString*)name
+{
+    FMDatabase* db = [PCKCommon database];
+    [db executeUpdate:@"INSERT INTO item(name) VALUES (?)", name];
+    
+    return [[PCKItem alloc]initWithId:[db lastInsertRowId] name:name];
+}
+
+
++ (PCKItem*)getOrCreateByName:(NSString*)name
+{
+    NSArray * items = [self find:@"SELECT * FROM item WHERE name = ?", name ];
+    if([items count]>0){
+        return [items objectAtIndex:0];
+    }
+    
+    return [self createWithName:name];
+}
+
 
 -(NSString*)indexName
 {

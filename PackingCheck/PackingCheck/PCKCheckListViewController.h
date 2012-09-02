@@ -3,8 +3,9 @@
 #import "PCKCheckList.h"
 #import "PCKCheckItemCell.h"
 #import "DACircularProgressView.h"
+#import "PCKAddItemController.h"
 
-@interface PCKCheckListViewController : SEViewController<UITableViewDataSource, UITableViewDelegate, PCKCheckItemCellSlideDelegate> { 
+@interface PCKCheckListViewController : SEViewController<UITableViewDataSource, UITableViewDelegate, PCKCheckItemCellSlideDelegate, PCKAddItemDelegate> {
 }
 
 - (void)increaseOpens;

@@ -120,35 +120,20 @@
         // create the top bar
         self.title = boardTitle;
         navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-        
-        // add a simple for displaying a title on the bar
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textAlignment = UITextAlignmentCenter;
-        [titleLabel setText:title];
-        [navigationBar addSubview:titleLabel];
-        
-
-        // add a button to the right side that will become visible when the items are in editing mode
-        // clicking this button ends editing mode for all items on the springboard
-        doneEditingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        doneEditingButton.frame = CGRectMake(265, 5, 50, 34.0);
-        [doneEditingButton setTitle:@"确定" forState:UIControlStateNormal];
-        doneEditingButton.backgroundColor = [UIColor clearColor];
-        [doneEditingButton addTarget:self action:@selector(doneEditingButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        [doneEditingButton setHidden:YES];
-        [navigationBar addSubview:doneEditingButton];
-        
         navigationBar.barStyle = UIBarStyleBlack;
+        [navigationBar pushNavigationItem:[[UINavigationItem alloc]init] animated:NO];
+        navigationBar.topItem.title = self.title;
 
+        navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
+                                                                                  style:UIBarButtonItemStylePlain
+                                                                                  target:self
+                                                                                  action:@selector (settingButtonClicked)];
+        
 
-        UIButton * settingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        settingButton.frame = CGRectMake(5, 5, 50, 34.0);
-        [settingButton setTitle:@"设置" forState:UIControlStateNormal];
-        settingButton.backgroundColor = [UIColor clearColor];
-        [settingButton addTarget:self action:@selector(settingButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        [navigationBar addSubview:settingButton];
+        doneEditingButton = [[UIBarButtonItem alloc] initWithTitle:@"确定"
+                                                                                   style:UIBarButtonItemStylePlain
+                                                                                  target:self
+                                                                                  action:@selector (doneEditingButtonClicked)];
         
         
         [self addSubview:navigationBar];
@@ -324,7 +309,7 @@
     for (SEMenuItem *item in items)
         [item disableEditing];
     
-    [doneEditingButton setHidden:YES];
+    navigationBar.topItem.rightBarButtonItem = nil;
     self.isInEditingMode = NO;
 }
 
@@ -334,7 +319,7 @@
         [item enableEditing];
     
     // show the done editing button
-    [doneEditingButton setHidden:NO];
+    navigationBar.topItem.rightBarButtonItem = doneEditingButton;
     self.isInEditingMode = YES;
 }
 

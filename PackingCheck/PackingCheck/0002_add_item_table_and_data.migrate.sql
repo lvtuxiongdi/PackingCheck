@@ -50,6 +50,9 @@ INSERT INTO item(id, name) values (38, '鱼饵');
 INSERT INTO item(id, name) values (39, '鱼线');
 INSERT INTO item(id, name) values (40, '鱼篓');
 INSERT INTO item(id, name) values (41, '折叠板凳');
+INSERT INTO item(id, name) values (42, '简历');
+INSERT INTO item(id, name) values (43, '准考证');
+
 
 INSERT INTO list_item(list_id, item_id) values (1,1);
 INSERT INTO list_item(list_id, item_id) values (1,2);

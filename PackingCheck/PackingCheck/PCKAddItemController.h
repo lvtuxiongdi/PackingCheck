@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PCKAddItemController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@protocol PCKAddItemDelegate
+-(void)addItems:(NSArray*)items;
+@end
 
+@interface PCKAddItemController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property (unsafe_unretained) id<PCKAddItemDelegate> delegate;
+@property NSMutableSet* filterItemIds;
 @end

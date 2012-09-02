@@ -27,7 +27,7 @@
 		[self setTitleShadowColor:[UIColor colorWithWhite:0.200 alpha:1.000] forState:UIControlStateNormal];
 		[self setTitleShadowColor:[UIColor colorWithWhite:0.200 alpha:1.000] forState:UIControlStateSelected];
 		[self.titleLabel setShadowOffset:CGSizeMake(0.0, -0.6)];
-		[self.titleLabel setFont:[UIFont boldSystemFontOfSize:12.0]];
+		[self.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
 		self.titleLabel.textColor = [UIColor colorWithWhite:0.902 alpha:1.000];
 		
 		[self addTarget:self action:@selector(touchedUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
@@ -147,11 +147,9 @@
 
 - (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag {
 #ifdef DEBUG
-	NSLog(@"Animation Did Stop");
+//	NSLog(@"Animation Did Stop");
 #endif
 }
-
-
 
 
 @end

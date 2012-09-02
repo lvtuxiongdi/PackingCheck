@@ -3,12 +3,12 @@
 #import "PCKCheckItemCell.h"
 #import "PCKItem.h"
 #import "PCKBuyButton.h"
-#import "PCKAddItemController.h"
 #import "PCKCommon.h"
 
 @interface PCKCheckListViewController(){
     NSMutableSet * _checkedItems;
     NSMutableArray* _items;
+    NSMutableSet * _itemIds;
     BOOL _isChecking;
 }
 @end
@@ -16,11 +16,22 @@
 @synthesize checkList=_checkList, tableView=_tableView, progressView=_progressView;
 
 
+
 - (void) loadItems
 {
-    
     _items = [_checkList items];
+    _itemIds = [NSMutableSet set];
+    for(PCKItem* item in _items){
+        [_itemIds addObject:@(item.itemId)];
+    }
     _checkedItems = [NSMutableSet set];
+}
+
+-(void)addItems:(NSArray*)items
+{
+    [self.checkList addItems:[PCKCommon filterItems:items excludeIds:_itemIds]];
+    [self loadItems];
+    [self.tableView reloadData];
 }
 
 
@@ -29,13 +40,16 @@
     [self.checkList increaseOpens];    
 }
 
-- (void)addItem: (id)sender
+- (void)addItemLaunch
 {
     PCKAddItemController * addItemController = [[PCKAddItemController alloc] initWithNibName:nil bundle:nil];
+    
+    addItemController.delegate = self;
+    addItemController.filterItemIds = _itemIds;
     [self.navigationController pushViewController:addItemController animated:YES];
 }
 
-- (void)editItems: (id)sender
+- (void)editItems
 {
     NSLog(@"TODO edit");    
 }
@@ -66,8 +80,11 @@
 {
     if(_isChecking){
         [self stopChecking];
+        [self.progressView setHidden:YES];
+        self.progressView.progress = 0.0;
     }else{
         [self startChecking];
+        [self.progressView setHidden:NO];
     }
     
 }
@@ -80,18 +97,20 @@
     toolbar.backgroundColor = [UIColor blackColor];
     [self.view addSubview:toolbar];
     
-    PCKBuyButton *resetButton = [[PCKBuyButton alloc]initWithFrame:CGRectMake(100.0, 10.0, 70.0, 30.0)];
+    PCKBuyButton *resetButton = [[PCKBuyButton alloc]initWithFrame:CGRectMake(100.0, 10.0, 120.0, 40.0)];
     [resetButton addTarget:self action:@selector(checkSwitch:) forControlEvents:UIControlEventTouchUpInside];
-    [resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
-    [resetButton setTitle:@"结束检查" forState:UIControlStateSelected];
+    [resetButton setTitle:@"     开始检查     " forState:UIControlStateNormal];
+    [resetButton setTitle:@"滑动搞定的宝贝" forState:UIControlStateSelected];
 
 	[resetButton setBuyBlock:^(void){
         NSLog(@"buy");
     }];
     
     [toolbar addSubview:resetButton];
+
     
-    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(260.0f, 4.0f, 36.0f, 36.0f)];
+    self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(260.0f, 10.0f, 36.0f, 36.0f)];
+    [self.progressView setHidden:YES];
     [toolbar addSubview:self.progressView];
 }
 
@@ -104,7 +123,7 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [PCKCommon tableBackground];
     [self.view addSubview:self.tableView];
-    [self loadItems];
+
 }
 
 - (void)loadNavBar
@@ -113,11 +132,11 @@
     
     UIBarButtonItem *addLauncher = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                                                                  target: self
-                                                                                 action: @selector (addItem:)];
+                                                                                 action: @selector (addItemLaunch)];
     UIBarButtonItem *editLauncher = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                   target: self
-                                                                                  action: @selector (editItems:)];    
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: editLauncher,addLauncher, nil];
+                                                                                  action: @selector (editItems)];    
+    self.navigationItem.rightBarButtonItems = @[editLauncher,addLauncher];
 }
 
 
@@ -137,7 +156,7 @@
     [self loadToolBar];
     [self loadItemTable];
     [self loadNavBar];
-
+    [self loadItems];
 }
 
 #pragma mark - View lifecycle
@@ -182,7 +201,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
         cell.textLabel.font = [UIFont boldSystemFontOfSize: 18];
-
+        [cell.textLabel setShadowOffset:CGSizeMake(0.0, -0.6)];
         cell.textLabel.backgroundColor = [UIColor clearColor];
         cell.badgeColorHighlighted = [UIColor whiteColor];
         cell.delegate = self;
@@ -220,18 +239,25 @@
 
 }
 
+
+- (void)updateProgress
+{
+    if (_items && [_items count]>0){
+        self.progressView.progress = [_checkedItems count] == [_items count]? 0.99 : [_checkedItems count]/(float)[_items count];
+    }
+}
+
 #pragma PCKCheckItemCellSlideDelegate
 - (void)cellDidHide:(PCKCheckItemCell *)cell
 {
     [_checkedItems addObject:[NSNumber numberWithInt:cell.item.itemId]];
-    // TODO compute right number
-    self.progressView.progress += 0.03f;
+    [self updateProgress];    
 }
 
 - (void)cellDidUnhide:(PCKCheckItemCell *)cell
 {
     [_checkedItems removeObject:[NSNumber numberWithInt:cell.item.itemId]];
-    self.progressView.progress -= 0.03f;
+    [self updateProgress];
 }
 
 

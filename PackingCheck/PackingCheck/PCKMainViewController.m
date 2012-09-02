@@ -26,7 +26,7 @@
     NSMutableArray *items = [NSMutableArray array];
     PCKAddListController* addListController = [[PCKAddListController alloc] initWithNibName:nil bundle:nil];
     addListController.delegate = self;
-    SEMenuItem *addItem = [SEMenuItem initWithTitle:@"创建" imageName:@"icon_add.png" viewController:addListController removable:YES];
+    SEMenuItem *addItem = [SEMenuItem initWithTitle:@"新的行囊" imageName:@"icon_add.png" viewController:addListController removable:YES];
     addItem.isRemovable = NO;
     [items addObject:addItem];
     

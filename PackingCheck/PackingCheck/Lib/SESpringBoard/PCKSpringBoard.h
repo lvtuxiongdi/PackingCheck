@@ -15,7 +15,7 @@
     UINavigationController *nav;
     UIScrollView *itemsContainer;
     UIPageControl *pageControl;
-    UIButton *doneEditingButton;
+    UIBarButtonItem *doneEditingButton;
 } 
 
 @property (nonatomic) NSString *title;

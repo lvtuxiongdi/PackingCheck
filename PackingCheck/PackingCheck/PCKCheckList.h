@@ -16,6 +16,7 @@
 - (id)initWithId:(int)listId name:(NSString*)name imageName:(NSString*)imageName;
 - (void)increaseOpens;
 - (NSMutableArray*) items;
+- (void)addItems:(NSArray*)items;
 
 + (NSMutableArray*) all;
 + (PCKCheckList*)createWithName:(NSString*)name imageName:(NSString*)imageName;

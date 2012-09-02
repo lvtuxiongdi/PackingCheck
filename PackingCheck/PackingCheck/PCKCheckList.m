@@ -37,13 +37,33 @@
 - (void)increaseOpens
 {    
     FMDatabase* db = [PCKCommon database];
-    [db executeUpdate:@"UPDATE check_list SET opens=opens+1 WHERE id=?", [NSNumber numberWithInt:self.listId]];
+    [db executeUpdate:@"UPDATE check_list SET opens=opens+1 WHERE id=?", @(self.listId)];
 }
 
 - (NSMutableArray*) items
 {
-    return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=?", [NSNumber numberWithInt:self.listId]];
+    return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=?", @(self.listId)];
 }
+
+- (void)addItems:(NSArray*)items{
+    // TODO transaction
+    FMDatabase* db = [PCKCommon database];
+    
+    FMResultSet* rs = [db executeQuery:@"SELECT i.id FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=?", @(self.listId)];
+    NSMutableSet * ids = [NSMutableSet set];
+    while([rs next]){
+        [ids addObject:@([rs intForColumn:@"id"])];
+    }
+    
+    for(PCKItem* item in items){
+        if(![ids containsObject:@(item.itemId)]){
+            [db executeUpdate:@"INSERT INTO list_item(list_id, item_id) values (?,?)", @(self.listId), @(item.itemId)];
+        }
+    }
+    
+}
+
+
 
 + (NSMutableArray*) all
 {

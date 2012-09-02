@@ -45,7 +45,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [PCKCommon smallBackgroundColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]];
     self.view.frame = CGRectMake(0, 0, 320, 120);
     
     self.createListButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(20, 20, 70,70)];

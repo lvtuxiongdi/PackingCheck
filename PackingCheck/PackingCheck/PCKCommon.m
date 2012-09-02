@@ -10,6 +10,7 @@
 #import "PCKConstants.h"
 #import "CommonUtils.h"
 #import "UIColor+HexString.h"
+#import "PCKItem.h"
 
 @implementation PCKCommon
 
@@ -94,7 +95,7 @@
 {
     static UIColor * _dottedColor = nil;
     if(!_dottedColor){
-        _dottedColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg_small"]];
+        _dottedColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]];
     }
     return _dottedColor;
 }
@@ -109,5 +110,19 @@
     }
     return _bigFont;
 }
+
+// utils
++(NSMutableArray*) filterItems:(NSArray*)items excludeIds:(NSSet*)ids
+{
+    NSMutableArray *filtered = [NSMutableArray array];
+    for(PCKItem* item in items){
+        if(![ids containsObject:@(item.itemId)]){
+            [filtered addObject:item];
+        }
+    }
+    
+    return filtered;
+}
+
 
 @end

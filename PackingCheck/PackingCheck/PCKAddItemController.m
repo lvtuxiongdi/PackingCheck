@@ -13,21 +13,61 @@
 #import "PCKIndexedItems.h"
 #import "PCKItem.h"
 
+#define CHECKED_TAG 99
+#define UNCHECKED_TAG 100
+
+
 @interface PCKAddItemController (){
     UITableView * _tableView;
-    UITextField* _searchBar;
+    UITextField* _newItemField;
     PCKIndexedItems* _indexItems;
     NSMutableArray* _items;
+    NSMutableDictionary* _selected;
 }
 
 @end
 
 @implementation PCKAddItemController
+@synthesize delegate, filterItemIds=_filterItemIds;
 
-- (void) addItem
+
+- (NSMutableSet*) newItemNames
 {
-    NSLog(@"add item");
+    NSMutableSet* newItemNames = [NSMutableSet set];
+    NSString *newItemString = [_newItemField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if([newItemString length] > 0){
+        newItemString = [newItemString stringByReplacingOccurrencesOfString:@"，" withString:@","];
+        [newItemNames addObjectsFromArray:[newItemString componentsSeparatedByString:@","]];
+    }
+    return newItemNames;
+}
+
+- (void) addItems
+{
+    NSMutableArray * toAddItems = [NSMutableArray array];
+    NSMutableSet* newItemNames = [self newItemNames];
+    
+    for(NSString* itemName in newItemNames){
+        [toAddItems addObject:[PCKItem getOrCreateByName:itemName]];
+    }
+    
+    for(PCKItem * item in  [_selected allValues]){
+        if(![newItemNames containsObject:item.name]){
+            [toAddItems addObject:item];
+        }
+    }
+    
+    if([toAddItems count] > 0){
+        [delegate addItems:toAddItems];
+    }
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)loadItems
+{
+    _items = [PCKCommon filterItems:[PCKItem all] excludeIds:self.filterItemIds];    
+    _indexItems = [[PCKIndexedItems alloc] initWithItems:_items];
+    _selected = [NSMutableDictionary dictionary];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,7 +75,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"添加宝贝";
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(addItem)] ;
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(addItems)] ;
         
         self.navigationItem.rightBarButtonItem = doneButton;
 
@@ -45,8 +85,8 @@
 
 - (void)dismissKeyboard
 {
-    if ([_searchBar isFirstResponder]) {
-        [_searchBar resignFirstResponder];
+    if ([_newItemField isFirstResponder]) {
+        [_newItemField resignFirstResponder];
     }
 }
 
@@ -64,7 +104,6 @@
 
 - (void)loadTopview
 {
-    
     // top view
     UIControl *topView = [[UIControl alloc]init];
     
@@ -80,22 +119,22 @@
     indicatorLabel.backgroundColor = [PCKCommon transparent];
     
     // search bar
-    _searchBar = [[UITextField alloc]init];
+    _newItemField = [[UITextField alloc]init];
 
-    _searchBar.frame = CGRectMake(11, 35, 298, 38);
-    _searchBar.backgroundColor = [PCKCommon transparent];
-    _searchBar.borderStyle = UITextBorderStyleNone;
-    _searchBar.layer.borderWidth = 1;
-    _searchBar.layer.cornerRadius = 5;
-    _searchBar.layer.borderColor = [[PCKCommon borderColor] CGColor];
-    _searchBar.backgroundColor = [UIColor whiteColor];    
-    _searchBar.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
-    _searchBar.leftViewMode = UITextFieldViewModeAlways;
-    _searchBar.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;    
-    _searchBar.font = [PCKCommon bigFont];
-    _searchBar.textColor = [PCKCommon inputColor];
+    _newItemField.frame = CGRectMake(11, 35, 298, 38);
+    _newItemField.backgroundColor = [PCKCommon transparent];
+    _newItemField.borderStyle = UITextBorderStyleNone;
+    _newItemField.layer.borderWidth = 1;
+    _newItemField.layer.cornerRadius = 5;
+    _newItemField.layer.borderColor = [[PCKCommon borderColor] CGColor];
+    _newItemField.backgroundColor = [UIColor whiteColor];    
+    _newItemField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
+    _newItemField.leftViewMode = UITextFieldViewModeAlways;
+    _newItemField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;    
+    _newItemField.font = [PCKCommon bigFont];
+    _newItemField.textColor = [PCKCommon inputColor];
 
-    [topView addSubview:_searchBar];
+    [topView addSubview:_newItemField];
     [topView addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:topView];    
 }
@@ -105,26 +144,15 @@
     [super loadView];
     [self loadTableView];
     [self loadTopview];
-    
-//    UIImageView * separator = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wave-separator.png"]];
-    
-//    separator.clipsToBounds=NO;
-//    separator.frame = CGRectMake(0, 79, 320, 6);
-//    [self.view addSubview:separator];
 }
 
--(void)loadData
-{
-    _items = [PCKItem all]; 
-    _indexItems = [[PCKIndexedItems alloc] initWithItems:_items]; 
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.navigationController setToolbarHidden:YES];
-    [self loadData];
+    [self loadItems];
 }
 
 - (void)viewDidUnload
@@ -136,6 +164,11 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:YES];
+}
+
+- (PCKItem*)itemForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [[_indexItems itemsAtIndexNumber:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
@@ -169,10 +202,29 @@
     return [_indexItems.indexNames count];
 }
 
+- (void)checkCell:(UITableViewCell*)cell withItem:(PCKItem*)item
+{
+    BOOL checked = [_selected objectForKey:@(item.itemId)] != nil;
+    [((UIImageView *)[cell viewWithTag:CHECKED_TAG])setHidden:!checked];
+    [((UIImageView *)[cell viewWithTag:UNCHECKED_TAG])setHidden:checked];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PCKItem * item = [self itemForRowAtIndexPath:indexPath];
     
+    [_selected objectForKey:@(item.itemId)] != nil? [_selected removeObjectForKey:@(item.itemId)]:[_selected setObject:item forKey:@(item.itemId)];
+    [self checkCell:[tableView cellForRowAtIndexPath:indexPath] withItem:item];
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PCKItem * item = [self itemForRowAtIndexPath:indexPath];
+    cell.textLabel.text = item.name;
+    [self checkCell:cell withItem:item];
+}
+
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -182,16 +234,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.textLabel.font = [PCKCommon bigFont];
         cell.textLabel.textColor = [PCKCommon cellLabelColor];
+        UIImageView *checkedView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checked"]];
+        UIImageView *uncheckedView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"unchecked"]];
+        
+        checkedView.frame = CGRectMake(260, 10, 21, 21);
+        checkedView.tag = CHECKED_TAG;
+        uncheckedView.frame = CGRectMake(260, 10, 21, 21);
+        uncheckedView.tag = UNCHECKED_TAG;
+        
+        [cell addSubview:checkedView];
+        [cell addSubview:uncheckedView];
     }
     
-    PCKItem * item = [[_indexItems itemsAtIndexNumber:indexPath.section] objectAtIndex:indexPath.row];
-    cell.textLabel.text = item.name;
-    
     return cell;
-
 }
-
-
 
 
 @end
