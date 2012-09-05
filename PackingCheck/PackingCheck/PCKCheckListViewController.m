@@ -10,6 +10,7 @@
     NSMutableArray* _items;
     NSMutableSet * _itemIds;
     BOOL _isChecking;
+    BOOL _isEditing;
 }
 @end
 @implementation PCKCheckListViewController
@@ -49,9 +50,10 @@
     [self.navigationController pushViewController:addItemController animated:YES];
 }
 
-- (void)editItems
+- (void)switchEdit
 {
-    NSLog(@"TODO edit");    
+    _isEditing = !_isEditing;
+    [self.tableView setEditing:_isEditing animated:YES];
 }
 
 - (void)stopChecking
@@ -61,12 +63,16 @@
     for (UIBarButtonItem * button in self.navigationItem.rightBarButtonItems){
         button.enabled = YES;
     }
-
+    
     [self.tableView reloadData];
 }
 
 - (void)startChecking
 {
+    if (_isEditing) {
+        [self switchEdit];
+    }
+    
     _isChecking = YES;
     for (UIBarButtonItem * button in self.navigationItem.rightBarButtonItems){
         button.enabled = NO;
@@ -135,7 +141,7 @@
                                                                                  action: @selector (addItemLaunch)];
     UIBarButtonItem *editLauncher = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                   target: self
-                                                                                  action: @selector (editItems)];    
+                                                                                  action: @selector (switchEdit)];    
     self.navigationItem.rightBarButtonItems = @[editLauncher,addLauncher];
 }
 
@@ -145,6 +151,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _isChecking = NO;
+        _isEditing = NO;
     }
     return self;
 }
@@ -194,12 +201,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"PCKCheckListCell";
-
     PCKCheckItemCell *cell = (PCKCheckItemCell *) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[PCKCheckItemCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.textLabel.font = [UIFont boldSystemFontOfSize: 18];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, -0.6)];
         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -208,37 +214,57 @@
     }
 
     cell.badgeString = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-
-    if(indexPath.row < 3){
-        cell.badgeColor = [UIColor redColor];
-    }else {
-        cell.badgeColor = [UIColor colorWithRed:0.530f green:0.600f blue:0.738f alpha:1.000f];
-    }
+    cell.badgeColor = indexPath.row < 3? [UIColor redColor]:[UIColor colorWithRed:0.530f green:0.600f blue:0.738f alpha:1.000f];
     
     PCKItem * item = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.name;
     cell.item = item;
-    cell.hide = NO;
-
-    
-    if ([_checkedItems containsObject:[NSNumber numberWithInt:item.itemId]]){
-        cell.hide = YES;
-    }
+    cell.hide = [_checkedItems containsObject:[NSNumber numberWithInt:item.itemId]];
     
     if (_isChecking){
         cell.direction = PCKCheckItemCellDirectionBoth;
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sliced_bg_green"]];
+        cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noise"]];
     }else {
         cell.direction = PCKCheckItemCellDirectionNone;
         cell.textLabel.textColor = [UIColor blackColor];
         cell.contentView.backgroundColor = [PCKCommon tableBackground];
+        cell.backgroundView.backgroundColor = [PCKCommon tableBackground];;
     }
 
     return cell;
-
 }
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+//    NSInteger fromRow = [sourceIndexPath row];
+//    NSInteger toRow = [destinationIndexPath row];
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        int row = [indexPath row];
+        PCKItem * item = [_items objectAtIndex:indexPath.row];
+        
+        [_checkList removeItemWithId:item.itemId];
+        [_items removeObjectAtIndex:row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 
 - (void)updateProgress
 {

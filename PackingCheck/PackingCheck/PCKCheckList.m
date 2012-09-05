@@ -63,6 +63,11 @@
     
 }
 
+- (void)removeItemWithId:(int)itemId
+{
+    FMDatabase* db = [PCKCommon database];
+    [db executeUpdate:@"DELETE FROM list_item WHERE list_id=? AND item_id=?", @(_listId), @(itemId)];
+}
 
 
 + (NSMutableArray*) all

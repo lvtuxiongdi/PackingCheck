@@ -17,6 +17,7 @@
 - (void)increaseOpens;
 - (NSMutableArray*) items;
 - (void)addItems:(NSArray*)items;
+- (void)removeItemWithId:(int)itemId;
 
 + (NSMutableArray*) all;
 + (PCKCheckList*)createWithName:(NSString*)name imageName:(NSString*)imageName;

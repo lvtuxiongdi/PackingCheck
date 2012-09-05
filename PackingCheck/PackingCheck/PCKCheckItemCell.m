@@ -58,8 +58,7 @@
 //		self.contentView.backgroundColor = [UIColor whiteColor];
 		
 		UIView *backgroundView         = [[UIView alloc] initWithFrame:self.contentView.frame] ;
-		backgroundView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"noise"]];
-		self.backgroundView                  = backgroundView;
+		self.backgroundView = backgroundView;
         
         self.badge = [[TDBadgeView alloc] initWithFrame:CGRectZero];
         self.badge.parent = self;
