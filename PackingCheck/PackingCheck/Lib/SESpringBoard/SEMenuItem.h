@@ -8,15 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^ItemDeleteBlock)();
+
 @protocol MenuItemDelegate;
 @interface SEMenuItem : UIView {
     NSString *image;
     NSString *titleText;
     UIViewController *vcToLoad;
     __weak id<MenuItemDelegate> delegate;
-    UIButton *removeButton;   
+    UIButton *removeButton;
+    ItemDeleteBlock deleteBlock;
 }
 
+@property (readwrite, copy)ItemDeleteBlock deleteBlock;
 @property (nonatomic, assign) int tag;
 @property BOOL isRemovable;
 @property BOOL isInEditingMode;

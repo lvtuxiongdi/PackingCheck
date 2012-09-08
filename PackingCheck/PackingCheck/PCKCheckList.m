@@ -42,13 +42,13 @@
 
 - (NSMutableArray*) items
 {
-    return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=?", @(self.listId)];
+    return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=? ORDER BY l.item_order desc", @(self.listId)];
 }
 
 - (void)addItems:(NSArray*)items{
     // TODO transaction
     FMDatabase* db = [PCKCommon database];
-    
+    [db beginTransaction];
     FMResultSet* rs = [db executeQuery:@"SELECT i.id FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=?", @(self.listId)];
     NSMutableSet * ids = [NSMutableSet set];
     while([rs next]){
@@ -60,13 +60,33 @@
             [db executeUpdate:@"INSERT INTO list_item(list_id, item_id) values (?,?)", @(self.listId), @(item.itemId)];
         }
     }
-    
+    [db commit];
+}
+
+- (void)reorderItems:(NSArray*)items
+{
+    FMDatabase* db = [PCKCommon database];
+    [db beginTransaction];
+    int i = [items count];
+    for(PCKItem * item in items){
+        [db executeUpdate:@"UPDATE list_item SET item_order=? WHERE list_id=? AND item_id=?",@(i--), @(_listId), @(item.itemId)];
+    }
+    [db commit];
 }
 
 - (void)removeItemWithId:(int)itemId
 {
     FMDatabase* db = [PCKCommon database];
     [db executeUpdate:@"DELETE FROM list_item WHERE list_id=? AND item_id=?", @(_listId), @(itemId)];
+}
+
++ (void)removeById:(int)listId
+{
+    FMDatabase* db = [PCKCommon database];
+    [db beginTransaction];
+    [db executeUpdate:@"DELETE FROM list_item WHERE list_id=?", @(listId)];
+    [db executeUpdate:@"DELETE FROM check_list WHERE id=?", @(listId)];
+    [db commit];
 }
 
 

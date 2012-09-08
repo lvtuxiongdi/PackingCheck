@@ -14,7 +14,7 @@
 
 @implementation SEMenuItem
 
-@synthesize tag, delegate, isRemovable, isInEditingMode;
+@synthesize tag, delegate, isRemovable, isInEditingMode, deleteBlock;
 
 #pragma mark - UI actions
 
@@ -30,6 +30,9 @@
 
 - (void) removeButtonClicked:(id) sender  {
     [[self delegate] removeFromSpringboard:tag];
+    if(self.deleteBlock){
+        self.deleteBlock();
+    }
 }
 
 #pragma mark - Custom Methods

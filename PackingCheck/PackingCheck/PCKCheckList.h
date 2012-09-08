@@ -18,7 +18,9 @@
 - (NSMutableArray*) items;
 - (void)addItems:(NSArray*)items;
 - (void)removeItemWithId:(int)itemId;
+- (void)reorderItems:(NSArray*)items;
 
++ (void)removeById:(int)listId;
 + (NSMutableArray*) all;
 + (PCKCheckList*)createWithName:(NSString*)name imageName:(NSString*)imageName;
 @end

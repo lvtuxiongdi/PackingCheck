@@ -6,6 +6,7 @@ CREATE TABLE item(
 CREATE TABLE list_item(
     list_id INTEGER,
     item_id INTEGER,
+    item_order INTEGER DEFAULT 0,
     CONSTRAINT pk_list_item primary key (list_id,item_id)
 );
 

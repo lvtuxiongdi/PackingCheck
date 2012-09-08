@@ -34,6 +34,9 @@
         PCKCheckListViewController *checkListViewController = [[PCKCheckListViewController alloc] initWithNibName:nil bundle:nil];
         checkListViewController.checkList = checkList;
         SEMenuItem *menuItem = [SEMenuItem initWithTitle:checkList.name imageName:checkList.imageName viewController:checkListViewController removable:YES];
+        menuItem.deleteBlock = ^{
+            [PCKCheckList removeById:checkList.listId];
+        };
         [items addObject:menuItem];
     }
     
@@ -55,7 +58,6 @@
 #pragma mark - PCKCheckListDelegate
 - (void) addListWithName:(NSString*)name imageName:(NSString*)imageName
 {
-    NSLog(@"add list[%@]", name);
     PCKCheckListViewController *checkListViewController = [[PCKCheckListViewController alloc] initWithNibName:nil bundle:nil];
     PCKCheckList * newList = [PCKCheckList createWithName:name imageName:imageName];
     checkListViewController.checkList = newList; 

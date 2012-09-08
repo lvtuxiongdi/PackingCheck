@@ -241,6 +241,10 @@
     return YES;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return !_isChecking;
+}
+
 
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -249,8 +253,13 @@
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-//    NSInteger fromRow = [sourceIndexPath row];
-//    NSInteger toRow = [destinationIndexPath row];
+    int fromRow = [sourceIndexPath row];
+    int toRow = [destinationIndexPath row];
+    PCKItem * item = [_items objectAtIndex:fromRow];
+    [_items removeObjectAtIndex:fromRow];
+    [_items insertObject:item atIndex:toRow];
+    [_checkList reorderItems:_items];
+    [self.tableView reloadData];
 }
 
 
