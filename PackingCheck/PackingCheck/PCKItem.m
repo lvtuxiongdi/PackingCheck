@@ -66,9 +66,9 @@
 {
     char myChar = pinyinFirstLetter([_name characterAtIndex:0]);
     if (myChar == '#'){
-        return [_name substringToIndex:1];
+        return [[_name substringToIndex:1] uppercaseString];
     }
-    return [NSString stringWithFormat:@"%c" , myChar];
+    return [[NSString stringWithFormat:@"%c" , myChar] uppercaseString];
 
 }
 
