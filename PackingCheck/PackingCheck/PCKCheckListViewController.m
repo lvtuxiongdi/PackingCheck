@@ -4,6 +4,8 @@
 #import "PCKItem.h"
 #import "PCKBuyButton.h"
 #import "PCKCommon.h"
+#import "UIGlossyButton.h"
+#import "UIView+LayerEffects.h"
 
 @interface PCKCheckListViewController(){
     NSMutableSet * _checkedItems;
@@ -11,6 +13,11 @@
     NSMutableSet * _itemIds;
     BOOL _isChecking;
     BOOL _isEditing;
+
+    MBProgressHUD* _hud;
+
+    UIGlossyButton *_resetButton;
+    
 }
 @end
 @implementation PCKCheckListViewController
@@ -84,35 +91,53 @@
 
 - (void)checkSwitch: (id)sender
 {
+    // TODO Very dirty, think of a better way 
     if(_isChecking){
-        [self stopChecking];
-        [self.progressView setHidden:YES];
-        self.progressView.progress = 0.0;
+        if(_resetButton.titleLabel.text == @"滑动搞定的宝贝"){
+            [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
+        }else{
+            [self stopChecking];
+            [self.progressView setHidden:YES];
+            self.progressView.progress = 0.0;
+            [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
+            _resetButton.tintColor = [UIColor brownColor];
+        }
     }else{
         [self startChecking];
         [self.progressView setHidden:NO];
+        [_resetButton setTitle:@"滑动搞定的宝贝" forState:UIControlStateNormal];
+        _resetButton.tintColor = [UIColor blueColor];
     }
-    
 }
 
 - (void)loadToolBar
 {
-    
     CGRect tvFrame = self.view.bounds;
     UIView * toolbar = [[UIView alloc]initWithFrame:CGRectMake(0, tvFrame.size.height - 100, tvFrame.size.width, 100)];
     toolbar.backgroundColor = [UIColor blackColor];
+    
+    
     [self.view addSubview:toolbar];
     
-    PCKBuyButton *resetButton = [[PCKBuyButton alloc]initWithFrame:CGRectMake(100.0, 10.0, 120.0, 40.0)];
-    [resetButton addTarget:self action:@selector(checkSwitch:) forControlEvents:UIControlEventTouchUpInside];
-    [resetButton setTitle:@"     开始检查     " forState:UIControlStateNormal];
-    [resetButton setTitle:@"滑动搞定的宝贝" forState:UIControlStateSelected];
-
-	[resetButton setBuyBlock:^(void){
-        NSLog(@"buy");
-    }];
+    _resetButton = [[UIGlossyButton alloc]initWithFrame:CGRectMake(80.0, 10.0, 160.0, 40.0)];
+    [_resetButton addTarget:self action:@selector(checkSwitch:) forControlEvents:UIControlEventTouchUpInside];
+    [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
+    [_resetButton useWhiteLabel: YES];
+    _resetButton.tintColor = [UIColor brownColor];
+	[_resetButton setShadow:[UIColor blackColor] opacity:0.8 offset:CGSizeMake(0, 1) blurRadius: 4];
+    [_resetButton setGradientType:kUIGlossyButtonGradientTypeLinearSmoothBrightToNormal];
     
-    [toolbar addSubview:resetButton];
+    [_resetButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+    _resetButton.titleLabel.textColor = [UIColor colorWithWhite:0.902 alpha:1.000];
+//    [self.titleLabel setFont:[UIFont boldSystemFontOfSize:16.0]];
+//    self.titleLabel.textColor = [UIColor colorWithWhite:0.902 alpha:1.000];
+//    [_resetButton setTitle:@"滑动搞定的宝贝" forState:UIControlStateSelected];
+
+//	[_resetButton setBuyBlock:^(void){
+//        NSLog(@"buy");
+//    }];
+    
+    [toolbar addSubview:_resetButton];
 
     
     self.progressView = [[DACircularProgressView alloc] initWithFrame:CGRectMake(260.0f, 10.0f, 36.0f, 36.0f)];
@@ -156,6 +181,13 @@
     return self;
 }
 
+- (void)loadHud
+{
+    _hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    _hud.mode = MBProgressHUDModeCustomView;
+    _hud.delegate = self;
+    [self.navigationController.view addSubview:_hud];
+}
 
 - (void)loadView
 {
@@ -164,6 +196,7 @@
     [self loadItemTable];
     [self loadNavBar];
     [self loadItems];
+    [self loadHud];
 }
 
 #pragma mark - View lifecycle
@@ -279,14 +312,26 @@
 {
     if (_items && [_items count]>0){
         self.progressView.progress = [_checkedItems count] == [_items count]? 0.99 : [_checkedItems count]/(float)[_items count];
+        
+        if([_checkedItems count] == [_items count]){
+            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+            _hud.labelText = @"全部搞定！出发吧！";
+            [_hud show:YES];
+            [_hud hide:YES afterDelay:2];
+        }
     }
+    
 }
 
 #pragma PCKCheckItemCellSlideDelegate
 - (void)cellDidHide:(PCKCheckItemCell *)cell
 {
     [_checkedItems addObject:[NSNumber numberWithInt:cell.item.itemId]];
-    [self updateProgress];    
+    [self updateProgress];
+    // TODO Very dirty, think of a better way
+    if(_resetButton.titleLabel.text == @"滑动搞定的宝贝"){
+        [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
+    }
 }
 
 - (void)cellDidUnhide:(PCKCheckItemCell *)cell

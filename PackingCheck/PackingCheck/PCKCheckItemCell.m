@@ -57,8 +57,16 @@
 		
 //		self.contentView.backgroundColor = [UIColor whiteColor];
 		
-		UIView *backgroundView         = [[UIView alloc] initWithFrame:self.contentView.frame] ;
+		UIView *backgroundView = [[UIView alloc] initWithFrame:self.contentView.frame] ;
 		self.backgroundView = backgroundView;
+        
+        UILabel * indicatorLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 20, 40, 20)];
+        indicatorLabel.text = @"搞定";
+        indicatorLabel.textColor = [UIColor whiteColor];
+        indicatorLabel.backgroundColor = [UIColor clearColor];
+
+        [self.backgroundView addSubview:indicatorLabel];
+        
         
         self.badge = [[TDBadgeView alloc] initWithFrame:CGRectZero];
         self.badge.parent = self;
@@ -72,11 +80,7 @@
 - (void)layoutBadge
 {
     //force badges to hide on edit.
-    if(self.editing)
-        [self.badge setHidden:YES];
-    else
-        [self.badge setHidden:NO];
-    
+    [self.badge setHidden:self.editing];
     
     CGSize badgeSize = [self.badgeString sizeWithFont:[UIFont boldSystemFontOfSize: 11]];
     CGRect badgeframe = CGRectMake(self.contentView.frame.size.width - (badgeSize.width + 25),
@@ -126,8 +130,6 @@
 	}else{
 		[self.badge setHidden:YES];
 	}
-    
-
     
     if(self.hide){
         [self _hideOutContentViewInDirection:PCKCheckItemCellDirectionRight];
