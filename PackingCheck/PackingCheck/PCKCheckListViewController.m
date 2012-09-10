@@ -275,7 +275,7 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return !_isChecking;
+    return !_isChecking && _isEditing;
 }
 
 

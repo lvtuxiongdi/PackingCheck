@@ -55,7 +55,6 @@
 		
 		[self addGestureRecognizer:self._panGesture];
 		
-//		self.contentView.backgroundColor = [UIColor whiteColor];
 		
 		UIView *backgroundView = [[UIView alloc] initWithFrame:self.contentView.frame] ;
 		self.backgroundView = backgroundView;
