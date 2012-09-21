@@ -1,6 +1,7 @@
 CREATE TABLE item(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    name_en TEXT
 );
 
 CREATE TABLE list_item(

@@ -33,7 +33,7 @@
     for (PCKCheckList * checkList in [self loadCheckLists]) {
         PCKCheckListViewController *checkListViewController = [[PCKCheckListViewController alloc] initWithNibName:nil bundle:nil];
         checkListViewController.checkList = checkList;
-        SEMenuItem *menuItem = [SEMenuItem initWithTitle:checkList.name imageName:checkList.imageName viewController:checkListViewController removable:YES];
+        SEMenuItem *menuItem = [SEMenuItem initWithTitle:[checkList i18nName] imageName:checkList.imageName viewController:checkListViewController removable:YES];
         menuItem.deleteBlock = ^{
             [PCKCheckList removeById:checkList.listId];
         };

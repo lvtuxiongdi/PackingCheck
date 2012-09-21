@@ -13,7 +13,7 @@
 #import "PCKItem.h"
 
 @implementation PCKCheckList
-@synthesize name=_name, listId=_listId, imageName=_imageName;
+@synthesize name=_name, listId=_listId, imageName=_imageName, nameEn=_nameEn;
 - (id)initWithId:(int)listId name:(NSString*)name imageName:(NSString*)imageName
 {
     self = [super init];
@@ -31,6 +31,7 @@
     self = [self initWithId:[(NSNumber *)[rs objectForColumnName:@"id"] intValue]  
                        name:[rs objectForColumnName:@"name"] 
                     imageName:[rs objectForColumnName:@"image_name"]];
+    self.nameEn = [rs objectForColumnName:@"name_en"];
     return self;
 }
 
@@ -44,6 +45,24 @@
 {
     return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=? ORDER BY l.item_order desc", @(self.listId)];
 }
+
+- (NSString *)i18nName
+{
+    
+    if(!self.nameEn || [[NSNull null] isEqual:self.nameEn]){
+        return self.name;
+    }
+    
+    NSString* strLanguage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
+    
+    
+    if([strLanguage isEqualToString:@"zh-Hans"]){
+        return self.name;
+    }
+
+    return self.nameEn;
+}
+
 
 - (void)addItems:(NSArray*)items{
     // TODO transaction

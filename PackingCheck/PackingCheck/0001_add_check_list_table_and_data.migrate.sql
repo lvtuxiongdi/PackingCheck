@@ -1,10 +1,11 @@
 CREATE TABLE check_list(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
+    name_en TEXT,
     image_name TEXT NOT NULL,
     opens INTEGER NOT NULL DEFAULT 0
 );
-INSERT INTO check_list(id, name, image_name) values (1,'去爬山', 'icon_hiking.png');
+INSERT INTO check_list(id, name, name_en, image_name) values (1,'去爬山', 'Hiking', 'icon_hiking.png');
 INSERT INTO check_list(id, name, image_name) values (2,'去野营', 'icon_camping.png');
 INSERT INTO check_list(id, name, image_name) values (3,'去上班', 'icon_gotowork.png');
 INSERT INTO check_list(id, name, image_name) values (4,'踢足球', 'icon_football.png');

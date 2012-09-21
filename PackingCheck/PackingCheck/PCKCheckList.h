@@ -11,6 +11,7 @@
 @interface PCKCheckList : PCKModel
 @property(nonatomic) int listId;
 @property(strong, nonatomic) NSString * name;
+@property(strong, nonatomic) NSString * nameEn;
 @property(strong, nonatomic) NSString * imageName;
 
 - (id)initWithId:(int)listId name:(NSString*)name imageName:(NSString*)imageName;
@@ -19,6 +20,8 @@
 - (void)addItems:(NSArray*)items;
 - (void)removeItemWithId:(int)itemId;
 - (void)reorderItems:(NSArray*)items;
+- (NSString *)i18nName;
+
 
 + (void)removeById:(int)listId;
 + (NSMutableArray*) all;

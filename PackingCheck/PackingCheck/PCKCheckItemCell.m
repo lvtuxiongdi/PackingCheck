@@ -41,7 +41,7 @@
 @synthesize shouldBounce = _shouldBounce;
 
 #pragma badge
-@synthesize badgeString=_badgeString, badge=_badge, badgeColor=_badgeColor, badgeColorHighlighted=_badgeColorHighlighted, showShadow=_showShadow;
+@synthesize badgeString=_badgeString, badge=__badge, badgeColor=_badgeColor, badgeColorHighlighted=_badgeColorHighlighted, showShadow=_showShadow;
 
 #pragma mark - Lifecycle
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

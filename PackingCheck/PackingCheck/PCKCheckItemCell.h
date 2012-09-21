@@ -36,5 +36,5 @@ typedef enum {
 @property (nonatomic, strong)   UIColor *badgeColorHighlighted;
 @property BOOL showShadow;
 
--(void)showSweep;
+//-(void)showSweep;
 @end

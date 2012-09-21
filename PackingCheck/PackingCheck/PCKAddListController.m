@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PCKAddListController.h"
 #import "UIColor+HexString.h"
-
+#import "PCKConstants.h"
 
 @interface PCKAddListController (){
     UITextField * _nameField;
@@ -61,6 +61,7 @@
 - (void)loadView
 {
     [super loadView];
+
     self.view.backgroundColor = [PCKCommon smallBackgroundColor];
     [self loadNavBar];
     [self loadNameField];
