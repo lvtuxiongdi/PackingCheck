@@ -55,6 +55,8 @@
 		208017D115F1519300DF01C2 /* icon_interview.png in Resources */ = {isa = PBXBuildFile; fileRef = 208017CF15F1519200DF01C2 /* icon_interview.png */; };
 		2099289B15B70719004EA08B /* UIGlossyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099289015B70719004EA08B /* UIGlossyButton.m */; };
 		2099289D15B70719004EA08B /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099289415B70719004EA08B /* UIView+LayerEffects.m */; };
+		20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */; };
+		20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B2DE70160D5FF8000295B3 /* umFeedback.bundle */; };
 		20B6DC3C15EFA3F500C5CF21 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B6DC3A15EFA3F500C5CF21 /* noise.png */; };
 		20B6DC3D15EFA3F500C5CF21 /* wallpaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B6DC3B15EFA3F500C5CF21 /* wallpaper.png */; };
 		20B6DC4615EFB04700C5CF21 /* sliced_bg_green_high.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B6DC3F15EFB04600C5CF21 /* sliced_bg_green_high.png */; };
@@ -218,6 +220,9 @@
 		2099289015B70719004EA08B /* UIGlossyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGlossyButton.m; sourceTree = "<group>"; };
 		2099289315B70719004EA08B /* UIView+LayerEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LayerEffects.h"; sourceTree = "<group>"; };
 		2099289415B70719004EA08B /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
+		20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
+		20B2DE6F160D5FF8000295B3 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
+		20B2DE70160D5FF8000295B3 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		20B6DC3A15EFA3F500C5CF21 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		20B6DC3B15EFA3F500C5CF21 /* wallpaper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wallpaper.png; sourceTree = "<group>"; };
 		20B6DC3F15EFB04600C5CF21 /* sliced_bg_green_high.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliced_bg_green_high.png; sourceTree = "<group>"; };
@@ -354,6 +359,7 @@
 				20FA48F915A7B9C20058FA36 /* UIKit.framework in Frameworks */,
 				20FA48FB15A7B9C20058FA36 /* Foundation.framework in Frameworks */,
 				20FA48FD15A7B9C20058FA36 /* CoreGraphics.framework in Frameworks */,
+				20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +452,16 @@
 				2099289415B70719004EA08B /* UIView+LayerEffects.m */,
 			);
 			path = UIGlossyButton;
+			sourceTree = "<group>";
+		};
+		20B2DE6C160D5FD2000295B3 /* Umeng */ = {
+			isa = PBXGroup;
+			children = (
+				20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */,
+				20B2DE6F160D5FF8000295B3 /* UMFeedback.h */,
+				20B2DE70160D5FF8000295B3 /* umFeedback.bundle */,
+			);
+			name = Umeng;
 			sourceTree = "<group>";
 		};
 		20BA688415AF15F7003F55AC /* JWFolders */ = {
@@ -704,6 +720,7 @@
 		20FA49B715A7DC660058FA36 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				20B2DE6C160D5FD2000295B3 /* Umeng */,
 				203EA4B915FC6F4400E031D6 /* MBProgressHUD */,
 				20E3D4E215EA84790052CEFD /* Pinyin */,
 				20BD0ABE15BBF75100C261E6 /* ObjcUtils */,
@@ -867,6 +884,7 @@
 				208017D115F1519300DF01C2 /* icon_interview.png in Resources */,
 				203EA4CF15FC760100E031D6 /* 37x-Checkmark@2x.png in Resources */,
 				203EA4D015FC760100E031D6 /* 37x-Checkmark.png in Resources */,
+				20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,6 +1005,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PackingCheck/PackingCheck-Prefix.pch";
 				INFOPLIST_FILE = "PackingCheck/PackingCheck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -998,6 +1020,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PackingCheck/PackingCheck-Prefix.pch";
 				INFOPLIST_FILE = "PackingCheck/PackingCheck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

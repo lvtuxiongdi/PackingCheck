@@ -61,6 +61,15 @@
     return [self createWithName:name];
 }
 
++ (void)removeById:(int)itemId
+{
+    FMDatabase* db = [PCKCommon database];
+    [db beginTransaction];
+    [db executeUpdate:@"DELETE FROM list_item WHERE item_id=?", @(itemId)];
+    [db executeUpdate:@"DELETE FROM item WHERE id=?", @(itemId)];
+    [db commit];
+}
+
 
 -(NSString*)indexName
 {

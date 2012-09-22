@@ -16,4 +16,5 @@
 + (NSMutableArray*) all;
 + (id)ItemWithId:(int)itemId name:(NSString*)name;
 + (PCKItem*)getOrCreateByName:(NSString*)name;
++ (void)removeById:(int)itemId;
 @end

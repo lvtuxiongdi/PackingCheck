@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "UIGlossyButton.h"
 
+
+@protocol PCKConfigDelegate <NSObject>
+-(void)feedback;
+@end
+
 @interface PCKConfigViewController : UIViewController
-@property(strong, nonatomic) UIGlossyButton * itemsButton;
+@property(unsafe_unretained) id<PCKConfigDelegate> delegate;
+@property(strong, nonatomic) UIGlossyButton * feedbackButton;
 @property(strong, nonatomic) UIGlossyButton * createListButton;
 @end

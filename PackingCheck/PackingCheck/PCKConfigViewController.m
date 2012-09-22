@@ -8,13 +8,16 @@
 
 #import "PCKConfigViewController.h"
 #import "PCKCommon.h"
+#import "UMFeedback.h"
 
 @interface PCKConfigViewController ()
 
 @end
 
 @implementation PCKConfigViewController
-@synthesize itemsButton=_itemsButton, createListButton=_createListButton;
+
+@synthesize delegate,feedbackButton=_feedbackButton, createListButton=_createListButton;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -47,14 +50,21 @@
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]];
     self.view.frame = CGRectMake(0, 0, 320, 120);
+    self.feedbackButton = [self controlButtonWithTitle:@"反馈" frame:CGRectMake(20, 20, 70, 70)];
+    [self.feedbackButton addTarget:self action:@selector(feedback) forControlEvents:UIControlEventTouchUpInside];
     
-    self.createListButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(20, 20, 70,70)];
-    self.itemsButton = [self controlButtonWithTitle:@"反馈" frame:CGRectMake(110, 20, 70,70)];
+    self.createListButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(110, 20, 70, 70)];
+
     
     [self.view addSubview:self.createListButton];    
-    [self.view addSubview:self.itemsButton];
+    [self.view addSubview:self.feedbackButton];
     
 	// Do any additional setup after loading the view.
+}
+
+- (void)feedback
+{
+    [self.delegate feedback];
 }
 
 - (void)viewDidUnload

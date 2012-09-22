@@ -72,6 +72,15 @@
     return [_indexedItems objectForKey:[self nameAtIndex:indexNumber]];
 }
 
+-(void) removeAtIndexNumber:(int)indexNumber row:(int)row
+{
+    NSString* name = [self nameAtIndex:indexNumber];
+    NSMutableArray * items = [_indexedItems objectForKey:name];
+    [items removeObjectAtIndex:row];
+ 
+}
+
+
 
 -(NSArray*) itemsAtIndexName:(NSString*)indexName
 {

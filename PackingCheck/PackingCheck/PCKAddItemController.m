@@ -171,6 +171,7 @@
     return [[_indexItems itemsAtIndexNumber:indexPath.section] objectAtIndex:indexPath.row];
 }
 
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView 
 {
     return [_indexItems indexNames];
@@ -237,9 +238,9 @@
         UIImageView *checkedView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"checked"]];
         UIImageView *uncheckedView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"unchecked"]];
         
-        checkedView.frame = CGRectMake(260, 10, 21, 21);
+        checkedView.frame = CGRectMake(255, 10, 21, 21);
         checkedView.tag = CHECKED_TAG;
-        uncheckedView.frame = CGRectMake(260, 10, 21, 21);
+        uncheckedView.frame = CGRectMake(255, 10, 21, 21);
         uncheckedView.tag = UNCHECKED_TAG;
         
         [cell addSubview:checkedView];
@@ -247,6 +248,34 @@
     }
     
     return cell;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        // TODO confirm window
+        PCKItem * item = [self itemForRowAtIndexPath:indexPath];
+        [PCKItem removeById:item.itemId];
+
+        [_indexItems removeAtIndexNumber:indexPath.section row:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 

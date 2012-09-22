@@ -26,8 +26,8 @@
     [self initData];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[PCKMainViewController alloc]init];
-    self.viewController.view.frame = self.window.frame;
-    NSLog(@"%f", self.window.frame.size.height);
+//    self.viewController.view.frame = self.window.frame;
+//    NSLog(@"%f", self.window.frame.size.height);
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

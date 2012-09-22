@@ -12,6 +12,7 @@
 #import "SEMenuItem.h"
 #import "PCKCheckList.h"
 #import "JWFolders.h"
+#import "UMFeedback.h"
 
 @interface PCKMainViewController (){
     PCKSpringBoard *_board;
@@ -51,6 +52,7 @@
     if (self) {
         [self initBoard];
         self.configViewController = [[PCKConfigViewController alloc] initWithNibName:nil bundle:nil];
+        self.configViewController.delegate = self;
     }
     return self;
 }
@@ -85,6 +87,11 @@
                          }
                                direction:JWFoldersOpenDirectionDown
      ];
+}
+
+- (void)feedback
+{
+    [UMFeedback showFeedback:self withAppkey:@"505d25f25270154f50000103"];
 }
 
 - (NSArray *)loadCheckLists

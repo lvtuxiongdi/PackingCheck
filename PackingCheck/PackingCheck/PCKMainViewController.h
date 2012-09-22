@@ -13,7 +13,7 @@
 #import "PCKSpringBoard.h"
 #import "PCKCommon.h"
 
-@interface PCKMainViewController : UIViewController<PCKCheckListDelegate>
+@interface PCKMainViewController : UIViewController<PCKCheckListDelegate, PCKConfigDelegate>
 
 @property (nonatomic, strong) PCKConfigViewController *configViewController;
 

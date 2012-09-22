@@ -304,6 +304,7 @@
         
         [_checkList removeItemWithId:item.itemId];
         [_items removeObjectAtIndex:row];
+        [_itemIds removeObject:@(item.itemId)];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }

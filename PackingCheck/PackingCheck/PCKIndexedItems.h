@@ -15,5 +15,5 @@
 -(int)indexOfName:(NSString*)name;
 -(NSArray*) itemsAtIndexNumber:(int)indexNumber;
 -(NSArray*) itemsAtIndexName:(NSString*)indexName;
-
+-(void) removeAtIndexNumber:(int)indexNumber row:(int)row;
 @end
