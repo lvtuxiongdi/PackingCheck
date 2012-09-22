@@ -13,6 +13,7 @@
 #import "PCKCheckList.h"
 #import "JWFolders.h"
 #import "UMFeedback.h"
+#import "PCKAboutViewController.h"
 
 @interface PCKMainViewController (){
     PCKSpringBoard *_board;
@@ -93,6 +94,15 @@
 {
     [UMFeedback showFeedback:self withAppkey:@"505d25f25270154f50000103"];
 }
+
+- (void)about
+{
+    PCKAboutViewController* about = [[PCKAboutViewController alloc]initWithNibName:nil bundle:nil];
+    UINavigationController* nav = [[UINavigationController alloc]initWithRootViewController:about];
+    [nav viewDidAppear:YES];
+    [self presentModalViewController:nav animated:YES];
+}
+
 
 - (NSArray *)loadCheckLists
 {

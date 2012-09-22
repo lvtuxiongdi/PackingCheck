@@ -16,7 +16,7 @@
 
 @implementation PCKConfigViewController
 
-@synthesize delegate,feedbackButton=_feedbackButton, createListButton=_createListButton;
+@synthesize delegate,feedbackButton=_feedbackButton, aboutButton=_aboutButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,10 +53,10 @@
     self.feedbackButton = [self controlButtonWithTitle:@"反馈" frame:CGRectMake(20, 20, 70, 70)];
     [self.feedbackButton addTarget:self action:@selector(feedback) forControlEvents:UIControlEventTouchUpInside];
     
-    self.createListButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(110, 20, 70, 70)];
-
+    self.aboutButton = [self controlButtonWithTitle:@"关于" frame:CGRectMake(110, 20, 70, 70)];
+    [self.aboutButton addTarget:self action:@selector(about) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubview:self.createListButton];    
+    [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.feedbackButton];
     
 	// Do any additional setup after loading the view.
@@ -66,6 +66,12 @@
 {
     [self.delegate feedback];
 }
+
+- (void)about
+{
+    [self.delegate about];
+}
+
 
 - (void)viewDidUnload
 {

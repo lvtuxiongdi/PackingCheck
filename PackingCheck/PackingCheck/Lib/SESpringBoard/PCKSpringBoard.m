@@ -124,11 +124,23 @@
         [navigationBar pushNavigationItem:[[UINavigationItem alloc]init] animated:NO];
         navigationBar.topItem.title = self.title;
 
-        navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
-                                                                                  style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector (settingButtonClicked)];
         
+        UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+
+        [infoButton addTarget:self action:@selector(settingButtonClicked)forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *infoButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+        navigationBar.topItem.leftBarButtonItem = infoButtonItem;
+
+        
+        
+//        navigationBar.topItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置"
+//                                                                                  style:UIBarButtonItemStylePlain
+//                                                                                  target:self
+//                                                                                  action:@selector (settingButtonClicked)];
+
+//        navigationBar.topItem.leftBarButtonItem =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind
+//                                                      target: self
+//                                                      action: @selector (settingButtonClicked)];
 
         doneEditingButton = [[UIBarButtonItem alloc] initWithTitle:@"确定"
                                                                                    style:UIBarButtonItemStylePlain

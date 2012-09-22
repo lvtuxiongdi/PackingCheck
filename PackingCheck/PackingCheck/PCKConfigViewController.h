@@ -12,10 +12,11 @@
 
 @protocol PCKConfigDelegate <NSObject>
 -(void)feedback;
+-(void)about;
 @end
 
 @interface PCKConfigViewController : UIViewController
 @property(unsafe_unretained) id<PCKConfigDelegate> delegate;
 @property(strong, nonatomic) UIGlossyButton * feedbackButton;
-@property(strong, nonatomic) UIGlossyButton * createListButton;
+@property(strong, nonatomic) UIGlossyButton * aboutButton;
 @end
