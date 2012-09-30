@@ -5,15 +5,18 @@
 //  Created by nanfang on 7/7/12.
 //  Copyright (c) 2012 lvtuxiongdi.com. All rights reserved.
 //
-
-#import "PCKMainViewController.h"
-#import "PCKCheckListViewController.h"
-#import "PCKAddListController.h"
 #import "SEMenuItem.h"
-#import "PCKCheckList.h"
+
 #import "JWFolders.h"
 #import "UMFeedback.h"
 #import "PCKAboutViewController.h"
+#import "PCKConstants.h"
+#import "PCKCheckList.h"
+#import "PCKMainViewController.h"
+#import "PCKCheckListViewController.h"
+#import "PCKAddListController.h"
+#import "MobClick.h"
+
 
 @interface PCKMainViewController (){
     PCKSpringBoard *_board;
@@ -92,7 +95,7 @@
 
 - (void)feedback
 {
-    [UMFeedback showFeedback:self withAppkey:@"505d25f25270154f50000103"];
+    [UMFeedback showFeedback:self withAppkey:UM_API_KEY];
 }
 
 - (void)about

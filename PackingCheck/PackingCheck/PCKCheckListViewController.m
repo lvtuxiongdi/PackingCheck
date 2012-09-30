@@ -6,6 +6,8 @@
 #import "PCKCommon.h"
 #import "UIGlossyButton.h"
 #import "UIView+LayerEffects.h"
+#import "MobClick.h"
+#import "PCKConstants.h"
 
 @interface PCKCheckListViewController(){
     NSMutableSet * _checkedItems;
@@ -319,6 +321,7 @@
             _hud.labelText = @"全部搞定！出发吧！";
             [_hud show:YES];
             [_hud hide:YES afterDelay:2];
+            [MobClick event:EVENT_CHECKED];
         }
     }
     

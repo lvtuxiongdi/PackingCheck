@@ -54,7 +54,12 @@ INSERT INTO item(id, name) values (40, '鱼篓');
 INSERT INTO item(id, name) values (41, '折叠板凳');
 INSERT INTO item(id, name) values (42, '简历');
 INSERT INTO item(id, name) values (43, '准考证');
-
+INSERT INTO item(id, name) values (44, '普通铅笔');
+INSERT INTO item(id, name) values (45, '文艺铅笔');
+INSERT INTO item(id, name) values (46, '2B铅笔');
+INSERT INTO item(id, name) values (47, '购物清单');
+INSERT INTO item(id, name) values (48, '头盔');
+INSERT INTO item(id, name) values (49, '车锁');
 
 INSERT INTO list_item(list_id, item_id) values (1,1);
 INSERT INTO list_item(list_id, item_id) values (1,2);
@@ -81,4 +86,60 @@ INSERT INTO list_item(list_id, item_id) values (2,14);
 INSERT INTO list_item(list_id, item_id) values (2,22);
 INSERT INTO list_item(list_id, item_id) values (2,23);
 INSERT INTO list_item(list_id, item_id) values (2,25);
+
+INSERT INTO list_item(list_id, item_id) values (3,1);
+INSERT INTO list_item(list_id, item_id) values (3,4);
+INSERT INTO list_item(list_id, item_id) values (3,5);
+INSERT INTO list_item(list_id, item_id) values (3,24);
+
+INSERT INTO list_item(list_id, item_id) values (4,27);
+INSERT INTO list_item(list_id, item_id) values (4,28);
+INSERT INTO list_item(list_id, item_id) values (4,8);
+
+INSERT INTO list_item(list_id, item_id) values (5,42);
+
+INSERT INTO list_item(list_id, item_id) values (6,44);
+INSERT INTO list_item(list_id, item_id) values (6,45);
+INSERT INTO list_item(list_id, item_id) values (6,46);
+
+INSERT INTO list_item(list_id, item_id) values (7,2);
+INSERT INTO list_item(list_id, item_id) values (7,3);
+INSERT INTO list_item(list_id, item_id) values (7,4);
+INSERT INTO list_item(list_id, item_id) values (7,15);
+INSERT INTO list_item(list_id, item_id) values (7,16);
+INSERT INTO list_item(list_id, item_id) values (7,17);
+
+INSERT INTO list_item(list_id, item_id) values (8,3);
+INSERT INTO list_item(list_id, item_id) values (8,47);
+
+INSERT INTO list_item(list_id, item_id) values (9,33);
+INSERT INTO list_item(list_id, item_id) values (9,34);
+INSERT INTO list_item(list_id, item_id) values (9,35);
+
+INSERT INTO list_item(list_id, item_id) values (10,6);
+INSERT INTO list_item(list_id, item_id) values (10,7);
+INSERT INTO list_item(list_id, item_id) values (10,8);
+
+INSERT INTO list_item(list_id, item_id) values (11,6);
+INSERT INTO list_item(list_id, item_id) values (11,8);
+INSERT INTO list_item(list_id, item_id) values (11,29);
+INSERT INTO list_item(list_id, item_id) values (11,30);
+INSERT INTO list_item(list_id, item_id) values (11,31);
+
+INSERT INTO list_item(list_id, item_id) values (12,33);
+INSERT INTO list_item(list_id, item_id) values (12,34);
+
+INSERT INTO list_item(list_id, item_id) values (13,18);
+
+INSERT INTO list_item(list_id, item_id) values (14,8);
+INSERT INTO list_item(list_id, item_id) values (14,48);
+INSERT INTO list_item(list_id, item_id) values (14,49);
+
+
+INSERT INTO list_item(list_id, item_id) values (15,2);
+INSERT INTO list_item(list_id, item_id) values (15,3);
+INSERT INTO list_item(list_id, item_id) values (15,4);
+INSERT INTO list_item(list_id, item_id) values (15,5);
+
+
 

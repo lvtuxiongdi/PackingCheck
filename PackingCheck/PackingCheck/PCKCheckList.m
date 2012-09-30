@@ -106,6 +106,7 @@
     [db executeUpdate:@"DELETE FROM list_item WHERE list_id=?", @(listId)];
     [db executeUpdate:@"DELETE FROM check_list WHERE id=?", @(listId)];
     [db commit];
+    [MobClick event:EVENT_REMOVE_LIST];
 }
 
 
@@ -120,6 +121,7 @@
     [db executeUpdate:@"INSERT INTO check_list(name, image_name) VALUES (?, ?)", name, imageName];
     int listId = [db lastInsertRowId];
     PCKCheckList* checkList = [[PCKCheckList alloc]initWithId:listId name:name imageName:imageName];
+    [MobClick event:EVENT_ADD_LIST];
     return checkList;
 }
 @end

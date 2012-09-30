@@ -11,6 +11,7 @@
 #import "PCKMainViewController.h"
 #import "UIView+FindUIViewController.h"
 #import "PCKCheckListViewController.h"
+#import "PCKConstants.h"
 
 @implementation PCKSpringBoard
 
@@ -111,7 +112,7 @@
 
 
 - (id) initWithTitle:(NSString *)boardTitle items:(NSMutableArray *)menuItems image:(UIImage *) image{
-    self = [super initWithFrame:CGRectMake(0, 0, 320, 460)];
+    self = [super initWithFrame:CGRectMake(0, 0, 320, __MainScreen_Height)];
     [self setUserInteractionEnabled:YES];
     if (self) {
         self.launcher = image;
@@ -172,8 +173,15 @@
          selector:@selector(closeViewEventHandler:)
          name:@"closeView"
          object:nil ];
+        if ([[UIScreen mainScreen] bounds].size.height == 568)
+        {
+            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-568h.jpg"]];
+        }
+        else
+        {
+            self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
+        }
         
-        self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.jpg"]];
     }
     return self;
 }

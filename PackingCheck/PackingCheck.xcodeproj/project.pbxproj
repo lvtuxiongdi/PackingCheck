@@ -39,6 +39,10 @@
 		201BDE0815CDB080007F0AED /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0215CDB080007F0AED /* UIImage+Alpha.m */; };
 		201BDE0915CDB080007F0AED /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0315CDB080007F0AED /* UIImage+RoundedCorner.m */; };
 		201BDE0B15CDB254007F0AED /* bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 201BDE0A15CDB254007F0AED /* bg@2x.jpg */; };
+		202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EB1617C95E0088823F /* libMobClickLibrary.a */; };
+		202CC1F01617C98F0088823F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EF1617C98F0088823F /* libz.dylib */; };
+		202CC1F2161835340088823F /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F1161835340088823F /* app_icon.png */; };
+		202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F3161835720088823F /* bg-568h@2x.jpg */; };
 		203EA4C415FC75CF00E031D6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */; };
 		203EA4CF15FC760100E031D6 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */; };
 		203EA4D015FC760100E031D6 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4CA15FC760100E031D6 /* 37x-Checkmark.png */; };
@@ -57,7 +61,7 @@
 		2099289D15B70719004EA08B /* UIView+LayerEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 2099289415B70719004EA08B /* UIView+LayerEffects.m */; };
 		209C5A68160DF7830050E11C /* app_image-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A65160DF7830050E11C /* app_image-568h@2x.png */; };
 		209C5A69160DF7830050E11C /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A66160DF7830050E11C /* about.png */; };
-		209C5A6A160DF7830050E11C /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A67160DF7830050E11C /* app_icon.png */; };
+		209C5A6A160DF7830050E11C /* app_icon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A67160DF7830050E11C /* app_icon02.png */; };
 		20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */; };
 		20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B2DE70160D5FF8000295B3 /* umFeedback.bundle */; };
 		20B2DE7A160D9C87000295B3 /* PCKAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B2DE79160D9C86000295B3 /* PCKAboutViewController.m */; };
@@ -204,6 +208,11 @@
 		201BDE0515CDB080007F0AED /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		201BDE0615CDB080007F0AED /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		201BDE0A15CDB254007F0AED /* bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg@2x.jpg"; sourceTree = "<group>"; };
+		202CC1EB1617C95E0088823F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		202CC1EC1617C95E0088823F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		202CC1EF1617C98F0088823F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		202CC1F1161835340088823F /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		202CC1F3161835720088823F /* bg-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-568h@2x.jpg"; sourceTree = "<group>"; };
 		203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		203EA4C315FC75CF00E031D6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
@@ -226,7 +235,7 @@
 		2099289415B70719004EA08B /* UIView+LayerEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LayerEffects.m"; sourceTree = "<group>"; };
 		209C5A65160DF7830050E11C /* app_image-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_image-568h@2x.png"; sourceTree = "<group>"; };
 		209C5A66160DF7830050E11C /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
-		209C5A67160DF7830050E11C /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		209C5A67160DF7830050E11C /* app_icon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon02.png; sourceTree = "<group>"; };
 		20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
 		20B2DE6F160D5FF8000295B3 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		20B2DE70160D5FF8000295B3 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
@@ -363,12 +372,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				202CC1F01617C98F0088823F /* libz.dylib in Frameworks */,
 				2007EC9815BA3BB000C60C9B /* libsqlite3.dylib in Frameworks */,
 				20FA49B915A7DCEB0058FA36 /* QuartzCore.framework in Frameworks */,
 				20FA48F915A7B9C20058FA36 /* UIKit.framework in Frameworks */,
 				20FA48FB15A7B9C20058FA36 /* Foundation.framework in Frameworks */,
 				20FA48FD15A7B9C20058FA36 /* CoreGraphics.framework in Frameworks */,
 				20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */,
+				202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,9 +415,11 @@
 		201BDDD715CDA537007F0AED /* images */ = {
 			isa = PBXGroup;
 			children = (
+				202CC1F3161835720088823F /* bg-568h@2x.jpg */,
+				202CC1F1161835340088823F /* app_icon.png */,
 				209C5A65160DF7830050E11C /* app_image-568h@2x.png */,
 				209C5A66160DF7830050E11C /* about.png */,
-				209C5A67160DF7830050E11C /* app_icon.png */,
+				209C5A67160DF7830050E11C /* app_icon02.png */,
 				203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */,
 				203EA4CA15FC760100E031D6 /* 37x-Checkmark.png */,
 				208017CA15F14FFE00DF01C2 /* bg2.png */,
@@ -469,6 +482,8 @@
 		20B2DE6C160D5FD2000295B3 /* Umeng */ = {
 			isa = PBXGroup;
 			children = (
+				202CC1EB1617C95E0088823F /* libMobClickLibrary.a */,
+				202CC1EC1617C95E0088823F /* MobClick.h */,
 				20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */,
 				20B2DE6F160D5FF8000295B3 /* UMFeedback.h */,
 				20B2DE70160D5FF8000295B3 /* umFeedback.bundle */,
@@ -594,6 +609,7 @@
 		20FA48F715A7B9C20058FA36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				202CC1EF1617C98F0088823F /* libz.dylib */,
 				2007EC9715BA3BB000C60C9B /* libsqlite3.dylib */,
 				20FA49B815A7DCEB0058FA36 /* QuartzCore.framework */,
 				20FA48F815A7B9C20058FA36 /* UIKit.framework */,
@@ -901,7 +917,9 @@
 				20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */,
 				209C5A68160DF7830050E11C /* app_image-568h@2x.png in Resources */,
 				209C5A69160DF7830050E11C /* about.png in Resources */,
-				209C5A6A160DF7830050E11C /* app_icon.png in Resources */,
+				209C5A6A160DF7830050E11C /* app_icon02.png in Resources */,
+				202CC1F2161835340088823F /* app_icon.png in Resources */,
+				202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

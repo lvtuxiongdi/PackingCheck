@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
+#import "PCKConstants.h"
+#import "MobClick.h"
+
 
 @protocol PCKIndexed <NSObject>
 -(NSString*)indexName;

@@ -46,7 +46,7 @@
 {
     FMDatabase* db = [PCKCommon database];
     [db executeUpdate:@"INSERT INTO item(name) VALUES (?)", name];
-    
+    [MobClick event:EVENT_ADD_ITEM];
     return [[PCKItem alloc]initWithId:[db lastInsertRowId] name:name];
 }
 
@@ -68,6 +68,7 @@
     [db executeUpdate:@"DELETE FROM list_item WHERE item_id=?", @(itemId)];
     [db executeUpdate:@"DELETE FROM item WHERE id=?", @(itemId)];
     [db commit];
+    [MobClick event:EVENT_REMOVE_ITEM];
 }
 
 

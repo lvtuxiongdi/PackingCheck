@@ -5,10 +5,12 @@
 //  Created by nanfang on 7/7/12.
 //  Copyright (c) 2012 lvtuxiongdi.com. All rights reserved.
 //
-
+#import "SQLMigrate.h"
+#import "MobClick.h"
 #import "PCKAppDelegate.h"
 #import "PCKCommon.h"
-#import "SQLMigrate.h"
+#import "PCKConstants.h"
+
 
 @implementation PCKAppDelegate
 
@@ -26,10 +28,11 @@
     [self initData];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[PCKMainViewController alloc]init];
-//    self.viewController.view.frame = self.window.frame;
-//    NSLog(@"%f", self.window.frame.size.height);
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+//    [MobClick startWithAppkey:UM_API_KEY];
+    [MobClick startWithAppkey:UM_API_KEY reportPolicy:REALTIME channelId:nil];
+    [MobClick checkUpdate];
     return YES;
 }
 
