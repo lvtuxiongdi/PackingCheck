@@ -41,8 +41,9 @@
 		201BDE0B15CDB254007F0AED /* bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 201BDE0A15CDB254007F0AED /* bg@2x.jpg */; };
 		202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EB1617C95E0088823F /* libMobClickLibrary.a */; };
 		202CC1F01617C98F0088823F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EF1617C98F0088823F /* libz.dylib */; };
-		202CC1F2161835340088823F /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F1161835340088823F /* app_icon.png */; };
+		202CC1F2161835340088823F /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F1161835340088823F /* app_icon@2x.png */; };
 		202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F3161835720088823F /* bg-568h@2x.jpg */; };
+		202CC1F816197B4B0088823F /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F716197B4A0088823F /* app_icon.png */; };
 		203EA4C415FC75CF00E031D6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */; };
 		203EA4CF15FC760100E031D6 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */; };
 		203EA4D015FC760100E031D6 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4CA15FC760100E031D6 /* 37x-Checkmark.png */; };
@@ -211,8 +212,9 @@
 		202CC1EB1617C95E0088823F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		202CC1EC1617C95E0088823F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		202CC1EF1617C98F0088823F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		202CC1F1161835340088823F /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		202CC1F1161835340088823F /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
 		202CC1F3161835720088823F /* bg-568h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-568h@2x.jpg"; sourceTree = "<group>"; };
+		202CC1F716197B4A0088823F /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
 		203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		203EA4C315FC75CF00E031D6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
@@ -416,7 +418,8 @@
 			isa = PBXGroup;
 			children = (
 				202CC1F3161835720088823F /* bg-568h@2x.jpg */,
-				202CC1F1161835340088823F /* app_icon.png */,
+				202CC1F1161835340088823F /* app_icon@2x.png */,
+				202CC1F716197B4A0088823F /* app_icon.png */,
 				209C5A65160DF7830050E11C /* app_image-568h@2x.png */,
 				209C5A66160DF7830050E11C /* about.png */,
 				209C5A67160DF7830050E11C /* app_icon02.png */,
@@ -918,8 +921,9 @@
 				209C5A68160DF7830050E11C /* app_image-568h@2x.png in Resources */,
 				209C5A69160DF7830050E11C /* about.png in Resources */,
 				209C5A6A160DF7830050E11C /* app_icon02.png in Resources */,
-				202CC1F2161835340088823F /* app_icon.png in Resources */,
+				202CC1F2161835340088823F /* app_icon@2x.png in Resources */,
 				202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */,
+				202CC1F816197B4B0088823F /* app_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -990,13 +994,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		202CC1F51618AFE30088823F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Fang Nan";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				New_Setting = "";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "17CC5CC9-0CCA-4783-B3A1-3819F7AE776B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
+			};
+			name = AppStore;
+		};
+		202CC1F61618AFE30088823F /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PackingCheck/PackingCheck-Prefix.pch";
+				INFOPLIST_FILE = "PackingCheck/PackingCheck-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
+		};
 		20FA490A15A7B9C20058FA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1011,6 +1056,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				New_Setting = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1021,7 +1067,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1029,6 +1076,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				New_Setting = "";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1061,6 +1109,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1073,6 +1122,7 @@
 			buildConfigurations = (
 				20FA490A15A7B9C20058FA36 /* Debug */,
 				20FA490B15A7B9C20058FA36 /* Release */,
+				202CC1F51618AFE30088823F /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1082,6 +1132,7 @@
 			buildConfigurations = (
 				20FA490D15A7B9C20058FA36 /* Debug */,
 				20FA490E15A7B9C20058FA36 /* Release */,
+				202CC1F61618AFE30088823F /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
