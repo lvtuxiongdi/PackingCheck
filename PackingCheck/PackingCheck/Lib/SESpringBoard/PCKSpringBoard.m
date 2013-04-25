@@ -12,6 +12,7 @@
 #import "UIView+FindUIViewController.h"
 #import "PCKCheckListViewController.h"
 #import "PCKConstants.h"
+#import "IMAdView.h"
 
 @implementation PCKSpringBoard
 
@@ -176,6 +177,14 @@
         if ([[UIScreen mainScreen] bounds].size.height == 568)
         {
             self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg-568h.jpg"]];
+            // integrate InMobi Ad
+            IMAdView *imAdView = [[IMAdView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height-50, 320, 50) imAppId:@"da59f9d22af844f78c94ee70008ed30f"
+                                                        imAdSize:IM_UNIT_320x50];
+            
+            IMAdRequest *request = [IMAdRequest request];
+            [imAdView loadIMAdRequest:request];
+            imAdView.refreshInterval = 30;
+            [self addSubview:imAdView];
         }
         else
         {

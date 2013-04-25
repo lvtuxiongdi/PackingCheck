@@ -9,6 +9,7 @@
 #import "PCKConfigViewController.h"
 #import "PCKCommon.h"
 #import "UMFeedback.h"
+#import "IMAdView.h"
 
 @interface PCKConfigViewController ()
 
@@ -49,7 +50,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg1"]];
-    self.view.frame = CGRectMake(0, 0, 320, 120);
+    self.view.frame = CGRectMake(0, 0, 320, 220);
     self.feedbackButton = [self controlButtonWithTitle:@"反馈" frame:CGRectMake(20, 20, 70, 70)];
     [self.feedbackButton addTarget:self action:@selector(feedback) forControlEvents:UIControlEventTouchUpInside];
     
@@ -59,6 +60,14 @@
     [self.view addSubview:self.aboutButton];
     [self.view addSubview:self.feedbackButton];
     
+    // integrate InMobi Ad
+    IMAdView *imAdView = [[IMAdView alloc] initWithFrame:CGRectMake(0, 130, 320, 50) imAppId:@"da59f9d22af844f78c94ee70008ed30f"
+                           imAdSize:IM_UNIT_320x50];
+
+    IMAdRequest *request = [IMAdRequest request];
+    [imAdView loadIMAdRequest:request];
+    imAdView.refreshInterval = 30;
+    [self.view addSubview:imAdView];
 	// Do any additional setup after loading the view.
 }
 
