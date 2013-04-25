@@ -39,6 +39,8 @@
 		201BDE0815CDB080007F0AED /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0215CDB080007F0AED /* UIImage+Alpha.m */; };
 		201BDE0915CDB080007F0AED /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0315CDB080007F0AED /* UIImage+RoundedCorner.m */; };
 		201BDE0B15CDB254007F0AED /* bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 201BDE0A15CDB254007F0AED /* bg@2x.jpg */; };
+		202B452017298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202B451E17298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a */; };
+		202B452117298E16008FA1CB /* libInMobiCommons-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202B451F17298E16008FA1CB /* libInMobiCommons-3.7.0.a */; };
 		202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EB1617C95E0088823F /* libMobClickLibrary.a */; };
 		202CC1F01617C98F0088823F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EF1617C98F0088823F /* libz.dylib */; };
 		202CC1F2161835340088823F /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 202CC1F1161835340088823F /* app_icon@2x.png */; };
@@ -53,8 +55,6 @@
 		2031D0DD171DAB71003FC5CB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031D0DC171DAB71003FC5CB /* MessageUI.framework */; };
 		2031D0DF171DAB78003FC5CB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031D0DE171DAB78003FC5CB /* StoreKit.framework */; };
 		2031D0E1171DAB84003FC5CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031D0E0171DAB84003FC5CB /* AudioToolbox.framework */; };
-		2031D0EC171DAE6E003FC5CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031D0EA171DAE6E003FC5CB /* libInMobiAdNetwork-3.7.0.a */; };
-		2031D0ED171DAE6E003FC5CB /* libInMobiCommons-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2031D0EB171DAE6E003FC5CB /* libInMobiCommons-3.7.0.a */; };
 		203EA4C415FC75CF00E031D6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */; };
 		203EA4CF15FC760100E031D6 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */; };
 		203EA4D015FC760100E031D6 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 203EA4CA15FC760100E031D6 /* 37x-Checkmark.png */; };
@@ -220,6 +220,15 @@
 		201BDE0515CDB080007F0AED /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		201BDE0615CDB080007F0AED /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		201BDE0A15CDB254007F0AED /* bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg@2x.jpg"; sourceTree = "<group>"; };
+		202B451717298E16008FA1CB /* IMAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdDelegate.h; sourceTree = "<group>"; };
+		202B451817298E16008FA1CB /* IMAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdError.h; sourceTree = "<group>"; };
+		202B451917298E16008FA1CB /* IMAdInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdInterstitial.h; sourceTree = "<group>"; };
+		202B451A17298E16008FA1CB /* IMAdInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdInterstitialDelegate.h; sourceTree = "<group>"; };
+		202B451B17298E16008FA1CB /* IMAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdRequest.h; sourceTree = "<group>"; };
+		202B451C17298E16008FA1CB /* IMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdView.h; sourceTree = "<group>"; };
+		202B451D17298E16008FA1CB /* IMCommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMCommonUtil.h; sourceTree = "<group>"; };
+		202B451E17298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobiAdNetwork-3.7.0.a"; sourceTree = "<group>"; };
+		202B451F17298E16008FA1CB /* libInMobiCommons-3.7.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libInMobiCommons-3.7.0.a"; sourceTree = "<group>"; };
 		202CC1EB1617C95E0088823F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		202CC1EC1617C95E0088823F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		202CC1EF1617C98F0088823F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -235,15 +244,6 @@
 		2031D0DC171DAB71003FC5CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2031D0DE171DAB78003FC5CB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2031D0E0171DAB84003FC5CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		2031D0E3171DAE6E003FC5CB /* IMAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdDelegate.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdDelegate.h; sourceTree = "<group>"; };
-		2031D0E4171DAE6E003FC5CB /* IMAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdError.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdError.h; sourceTree = "<group>"; };
-		2031D0E5171DAE6E003FC5CB /* IMAdInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdInterstitial.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdInterstitial.h; sourceTree = "<group>"; };
-		2031D0E6171DAE6E003FC5CB /* IMAdInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdInterstitialDelegate.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdInterstitialDelegate.h; sourceTree = "<group>"; };
-		2031D0E7171DAE6E003FC5CB /* IMAdRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdRequest.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdRequest.h; sourceTree = "<group>"; };
-		2031D0E8171DAE6E003FC5CB /* IMAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMAdView.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMAdView.h; sourceTree = "<group>"; };
-		2031D0E9171DAE6E003FC5CB /* IMCommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IMCommonUtil.h; path = ../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/IMCommonUtil.h; sourceTree = "<group>"; };
-		2031D0EA171DAE6E003FC5CB /* libInMobiAdNetwork-3.7.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libInMobiAdNetwork-3.7.0.a"; path = "../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/libInMobiAdNetwork-3.7.0.a"; sourceTree = "<group>"; };
-		2031D0EB171DAE6E003FC5CB /* libInMobiCommons-3.7.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libInMobiCommons-3.7.0.a"; path = "../../../Downloads/InMobi_iOS_SDK_3.7.0/Libs/libInMobiCommons-3.7.0.a"; sourceTree = "<group>"; };
 		203EA4C215FC75CF00E031D6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		203EA4C315FC75CF00E031D6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		203EA4C915FC760100E031D6 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark@2x.png"; sourceTree = "<group>"; };
@@ -420,8 +420,8 @@
 				20FA48FD15A7B9C20058FA36 /* CoreGraphics.framework in Frameworks */,
 				20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */,
 				202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */,
-				2031D0EC171DAE6E003FC5CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */,
-				2031D0ED171DAE6E003FC5CB /* libInMobiCommons-3.7.0.a in Frameworks */,
+				202B452017298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */,
+				202B452117298E16008FA1CB /* libInMobiCommons-3.7.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,15 +505,15 @@
 		2031D0E2171DACC9003FC5CB /* InMobi */ = {
 			isa = PBXGroup;
 			children = (
-				2031D0E3171DAE6E003FC5CB /* IMAdDelegate.h */,
-				2031D0E4171DAE6E003FC5CB /* IMAdError.h */,
-				2031D0E5171DAE6E003FC5CB /* IMAdInterstitial.h */,
-				2031D0E6171DAE6E003FC5CB /* IMAdInterstitialDelegate.h */,
-				2031D0E7171DAE6E003FC5CB /* IMAdRequest.h */,
-				2031D0E8171DAE6E003FC5CB /* IMAdView.h */,
-				2031D0E9171DAE6E003FC5CB /* IMCommonUtil.h */,
-				2031D0EA171DAE6E003FC5CB /* libInMobiAdNetwork-3.7.0.a */,
-				2031D0EB171DAE6E003FC5CB /* libInMobiCommons-3.7.0.a */,
+				202B451717298E16008FA1CB /* IMAdDelegate.h */,
+				202B451817298E16008FA1CB /* IMAdError.h */,
+				202B451917298E16008FA1CB /* IMAdInterstitial.h */,
+				202B451A17298E16008FA1CB /* IMAdInterstitialDelegate.h */,
+				202B451B17298E16008FA1CB /* IMAdRequest.h */,
+				202B451C17298E16008FA1CB /* IMAdView.h */,
+				202B451D17298E16008FA1CB /* IMCommonUtil.h */,
+				202B451E17298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a */,
+				202B451F17298E16008FA1CB /* libInMobiCommons-3.7.0.a */,
 			);
 			name = InMobi;
 			sourceTree = "<group>";
