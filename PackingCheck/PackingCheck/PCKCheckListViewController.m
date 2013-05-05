@@ -88,6 +88,13 @@
     }
     
     [self.tableView reloadData];
+    
+    _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    _hud.labelText = @"亲，滑走搞定的物品吧！";
+    [_hud show:YES];
+    [_hud hide:YES afterDelay:1];
+    [MobClick event:EVENT_CHECKED];
+
 }
 
 
@@ -95,19 +102,15 @@
 {
     // TODO Very dirty, think of a better way 
     if(_isChecking){
-        if(_resetButton.titleLabel.text == @"滑动搞定的宝贝"){
-            [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
-        }else{
-            [self stopChecking];
-            [self.progressView setHidden:YES];
-            self.progressView.progress = 0.0;
-            [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
-            _resetButton.tintColor = [UIColor brownColor];
-        }
+        [self stopChecking];
+        [self.progressView setHidden:YES];
+        self.progressView.progress = 0.0;
+        [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
+        _resetButton.tintColor = [UIColor brownColor];
     }else{
         [self startChecking];
         [self.progressView setHidden:NO];
-        [_resetButton setTitle:@"滑动搞定的宝贝" forState:UIControlStateNormal];
+        [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
         _resetButton.tintColor = [UIColor blueColor];
     }
 }
@@ -332,10 +335,6 @@
 {
     [_checkedItems addObject:[NSNumber numberWithInt:cell.item.itemId]];
     [self updateProgress];
-    // TODO Very dirty, think of a better way
-    if(_resetButton.titleLabel.text == @"滑动搞定的宝贝"){
-        [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
-    }
 }
 
 - (void)cellDidUnhide:(PCKCheckItemCell *)cell

@@ -41,6 +41,7 @@
 		201BDE0815CDB080007F0AED /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0215CDB080007F0AED /* UIImage+Alpha.m */; };
 		201BDE0915CDB080007F0AED /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = 201BDE0315CDB080007F0AED /* UIImage+RoundedCorner.m */; };
 		201BDE0B15CDB254007F0AED /* bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 201BDE0A15CDB254007F0AED /* bg@2x.jpg */; };
+		20242C9317364796009E3750 /* 0003_add_status_in_list_item.migrate.sql in Resources */ = {isa = PBXBuildFile; fileRef = 20242C9217364796009E3750 /* 0003_add_status_in_list_item.migrate.sql */; };
 		202B452017298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202B451E17298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a */; };
 		202B452117298E16008FA1CB /* libInMobiCommons-3.7.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202B451F17298E16008FA1CB /* libInMobiCommons-3.7.0.a */; };
 		202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 202CC1EB1617C95E0088823F /* libMobClickLibrary.a */; };
@@ -223,6 +224,7 @@
 		201BDE0515CDB080007F0AED /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
 		201BDE0615CDB080007F0AED /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		201BDE0A15CDB254007F0AED /* bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg@2x.jpg"; sourceTree = "<group>"; };
+		20242C9217364796009E3750 /* 0003_add_status_in_list_item.migrate.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 0003_add_status_in_list_item.migrate.sql; path = PackingCheck/0003_add_status_in_list_item.migrate.sql; sourceTree = SOURCE_ROOT; };
 		202B451717298E16008FA1CB /* IMAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdDelegate.h; sourceTree = "<group>"; };
 		202B451817298E16008FA1CB /* IMAdError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdError.h; sourceTree = "<group>"; };
 		202B451917298E16008FA1CB /* IMAdInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMAdInterstitial.h; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 			children = (
 				20BD0AD315BD9D7100C261E6 /* 0001_add_check_list_table_and_data.migrate.sql */,
 				20C4135815CE50CF008546A2 /* 0002_add_item_table_and_data.migrate.sql */,
+				20242C9217364796009E3750 /* 0003_add_status_in_list_item.migrate.sql */,
 			);
 			path = migrate;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */,
 				202CC1F816197B4B0088823F /* app_icon.png in Resources */,
 				201528E5173616B200503557 /* umFeedback.bundle in Resources */,
+				20242C9317364796009E3750 /* 0003_add_status_in_list_item.migrate.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

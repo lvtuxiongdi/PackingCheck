@@ -1,0 +1,1 @@
+ALTER TABLE list_item ADD status INTEGER DEFAULT 0;
