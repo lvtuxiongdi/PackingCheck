@@ -17,6 +17,8 @@
 		2007ECA115BA650500C60C9B /* PCKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007ECA015BA650500C60C9B /* PCKConstants.m */; };
 		2007ECA415BA7E2100C60C9B /* PCKCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007ECA315BA7E2100C60C9B /* PCKCommon.m */; };
 		2007ECEA15BAE45200C60C9B /* SQLMigrate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2007ECE915BAE45200C60C9B /* SQLMigrate.m */; };
+		201528E4173616B200503557 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 201528E1173616B200503557 /* libUMFeedback.a */; };
+		201528E5173616B200503557 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 201528E2173616B200503557 /* umFeedback.bundle */; };
 		201BDDEE15CDA593007F0AED /* icon_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 201BDDDA15CDA589007F0AED /* icon_all.png */; };
 		201BDDEF15CDA593007F0AED /* icon_badminton.png in Resources */ = {isa = PBXBuildFile; fileRef = 201BDDDB15CDA58A007F0AED /* icon_badminton.png */; };
 		201BDDF015CDA593007F0AED /* icon_basketball.png in Resources */ = {isa = PBXBuildFile; fileRef = 201BDDDC15CDA58A007F0AED /* icon_basketball.png */; };
@@ -74,8 +76,6 @@
 		209C5A68160DF7830050E11C /* app_image-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A65160DF7830050E11C /* app_image-568h@2x.png */; };
 		209C5A69160DF7830050E11C /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A66160DF7830050E11C /* about.png */; };
 		209C5A6A160DF7830050E11C /* app_icon02.png in Resources */ = {isa = PBXBuildFile; fileRef = 209C5A67160DF7830050E11C /* app_icon02.png */; };
-		20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */; };
-		20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 20B2DE70160D5FF8000295B3 /* umFeedback.bundle */; };
 		20B2DE7A160D9C87000295B3 /* PCKAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B2DE79160D9C86000295B3 /* PCKAboutViewController.m */; };
 		20B6DC3C15EFA3F500C5CF21 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B6DC3A15EFA3F500C5CF21 /* noise.png */; };
 		20B6DC3D15EFA3F500C5CF21 /* wallpaper.png in Resources */ = {isa = PBXBuildFile; fileRef = 20B6DC3B15EFA3F500C5CF21 /* wallpaper.png */; };
@@ -195,6 +195,9 @@
 		2007ECA315BA7E2100C60C9B /* PCKCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCKCommon.m; sourceTree = "<group>"; };
 		2007ECE815BAE45200C60C9B /* SQLMigrate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SQLMigrate.h; path = ../SQLMigrate/SQLMigrate/SQLMigrate.h; sourceTree = "<group>"; };
 		2007ECE915BAE45200C60C9B /* SQLMigrate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SQLMigrate.m; path = ../SQLMigrate/SQLMigrate/SQLMigrate.m; sourceTree = "<group>"; };
+		201528E1173616B200503557 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
+		201528E2173616B200503557 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
+		201528E3173616B200503557 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
 		201BDDDA15CDA589007F0AED /* icon_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_all.png; sourceTree = "<group>"; };
 		201BDDDB15CDA58A007F0AED /* icon_badminton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_badminton.png; sourceTree = "<group>"; };
 		201BDDDC15CDA58A007F0AED /* icon_basketball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_basketball.png; sourceTree = "<group>"; };
@@ -267,9 +270,6 @@
 		209C5A65160DF7830050E11C /* app_image-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_image-568h@2x.png"; sourceTree = "<group>"; };
 		209C5A66160DF7830050E11C /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		209C5A67160DF7830050E11C /* app_icon02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon02.png; sourceTree = "<group>"; };
-		20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMFeedback.a; sourceTree = "<group>"; };
-		20B2DE6F160D5FF8000295B3 /* UMFeedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMFeedback.h; sourceTree = "<group>"; };
-		20B2DE70160D5FF8000295B3 /* umFeedback.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = umFeedback.bundle; sourceTree = "<group>"; };
 		20B2DE78160D9C85000295B3 /* PCKAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCKAboutViewController.h; sourceTree = "<group>"; };
 		20B2DE79160D9C86000295B3 /* PCKAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCKAboutViewController.m; sourceTree = "<group>"; };
 		20B6DC3A15EFA3F500C5CF21 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
@@ -418,10 +418,10 @@
 				20FA48F915A7B9C20058FA36 /* UIKit.framework in Frameworks */,
 				20FA48FB15A7B9C20058FA36 /* Foundation.framework in Frameworks */,
 				20FA48FD15A7B9C20058FA36 /* CoreGraphics.framework in Frameworks */,
-				20B2DE71160D5FF8000295B3 /* libUMFeedback.a in Frameworks */,
 				202CC1ED1617C95E0088823F /* libMobClickLibrary.a in Frameworks */,
 				202B452017298E16008FA1CB /* libInMobiAdNetwork-3.7.0.a in Frameworks */,
 				202B452117298E16008FA1CB /* libInMobiCommons-3.7.0.a in Frameworks */,
+				201528E4173616B200503557 /* libUMFeedback.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,11 +541,11 @@
 		20B2DE6C160D5FD2000295B3 /* Umeng */ = {
 			isa = PBXGroup;
 			children = (
+				201528E1173616B200503557 /* libUMFeedback.a */,
+				201528E2173616B200503557 /* umFeedback.bundle */,
+				201528E3173616B200503557 /* UMFeedback.h */,
 				202CC1EB1617C95E0088823F /* libMobClickLibrary.a */,
 				202CC1EC1617C95E0088823F /* MobClick.h */,
-				20B2DE6E160D5FF8000295B3 /* libUMFeedback.a */,
-				20B2DE6F160D5FF8000295B3 /* UMFeedback.h */,
-				20B2DE70160D5FF8000295B3 /* umFeedback.bundle */,
 			);
 			name = Umeng;
 			sourceTree = "<group>";
@@ -983,13 +983,13 @@
 				208017D115F1519300DF01C2 /* icon_interview.png in Resources */,
 				203EA4CF15FC760100E031D6 /* 37x-Checkmark@2x.png in Resources */,
 				203EA4D015FC760100E031D6 /* 37x-Checkmark.png in Resources */,
-				20B2DE72160D5FF8000295B3 /* umFeedback.bundle in Resources */,
 				209C5A68160DF7830050E11C /* app_image-568h@2x.png in Resources */,
 				209C5A69160DF7830050E11C /* about.png in Resources */,
 				209C5A6A160DF7830050E11C /* app_icon02.png in Resources */,
 				202CC1F2161835340088823F /* app_icon@2x.png in Resources */,
 				202CC1F4161835730088823F /* bg-568h@2x.jpg in Resources */,
 				202CC1F816197B4B0088823F /* app_icon.png in Resources */,
+				201528E5173616B200503557 /* umFeedback.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
