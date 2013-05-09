@@ -11,6 +11,7 @@
 #import "PCKCommon.h"
 #import "DBUtils.h"
 #import "PCKItem.h"
+#import "PCKConstants.h"
 
 @implementation PCKCheckList
 @synthesize name=_name, listId=_listId, imageName=_imageName, nameEn=_nameEn;
@@ -44,6 +45,11 @@
 - (NSMutableArray*) items
 {
     return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=? ORDER BY l.item_order desc", @(self.listId)];
+}
+
+- (NSMutableArray*) checkedItems
+{
+    return [[PCKItem class] find:@"SELECT i.* FROM item i INNER JOIN list_item l ON i.id=l.item_id AND l.list_id=? AND l.status=? ORDER BY l.item_order desc", @(self.listId), @(ITEM_CHECKED)];
 }
 
 - (NSString *)i18nName
@@ -99,6 +105,40 @@
     [db executeUpdate:@"DELETE FROM list_item WHERE list_id=? AND item_id=?", @(_listId), @(itemId)];
 }
 
+
+- (void)checkItemWithId:(int)itemId
+{
+    FMDatabase* db = [PCKCommon database];
+    [db executeUpdate:@"UPDATE list_item SET status=? WHERE list_id=? AND item_id=?", @(ITEM_CHECKED), @(_listId), @(itemId)];
+}
+
+
+- (void)uncheckItemWithId:(int)itemId
+{
+    FMDatabase* db = [PCKCommon database];
+    [db executeUpdate:@"UPDATE list_item SET status=? WHERE list_id=? AND item_id=?", @(ITEM_UNCHECKED), @(_listId), @(itemId)];
+}
+
+- (void)uncheckAllItems
+{
+    FMDatabase* db = [PCKCommon database];
+    [db executeUpdate:@"UPDATE list_item SET status=? WHERE list_id=?", @(ITEM_UNCHECKED), @(_listId)];
+}
+
+- (BOOL)isChecking
+{
+    FMDatabase* db = [PCKCommon database];
+    FMResultSet* rs = [db executeQuery:@"SELECT COUNT(1) FROM list_item WHERE status=? AND list_id=? ", @(ITEM_CHECKED), @(self.listId)];
+    if([rs next]){
+        int totalCount = [rs intForColumnIndex:0];
+        if(totalCount > 0){
+            return YES;
+        }
+    }
+    return NO;
+}
+
+
 + (void)removeById:(int)listId
 {
     FMDatabase* db = [PCKCommon database];
@@ -108,7 +148,6 @@
     [db commit];
     [MobClick event:EVENT_REMOVE_LIST];
 }
-
 
 + (NSMutableArray*) all
 {

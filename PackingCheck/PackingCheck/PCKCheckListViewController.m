@@ -67,6 +67,7 @@
 
 - (void)stopChecking
 {
+    [_checkList uncheckAllItems];
     _isChecking = NO;
     [_checkedItems removeAllObjects];
     for (UIBarButtonItem * button in self.navigationItem.rightBarButtonItems){
@@ -74,6 +75,10 @@
     }
     
     [self.tableView reloadData];
+    [self.progressView setHidden:YES];
+    self.progressView.progress = 0.0;
+    [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
+    _resetButton.tintColor = [UIColor brownColor];
 }
 
 - (void)startChecking
@@ -81,20 +86,30 @@
     if (_isEditing) {
         [self switchEdit];
     }
-    
+    [self showChecking];
+    [self.tableView reloadData];
+    [self showHudWithText:@"亲，滑走搞定的物品吧！" delay:1];
+    [MobClick event:EVENT_CHECKED];
+
+}
+
+- (void)showChecking
+{
     _isChecking = YES;
     for (UIBarButtonItem * button in self.navigationItem.rightBarButtonItems){
         button.enabled = NO;
     }
-    
-    [self.tableView reloadData];
-    
-    _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-    _hud.labelText = @"亲，滑走搞定的物品吧！";
-    [_hud show:YES];
-    [_hud hide:YES afterDelay:1];
-    [MobClick event:EVENT_CHECKED];
+    [self.progressView setHidden:NO];
+    [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
+    _resetButton.tintColor = [UIColor blueColor];
+}
 
+- (void)showHudWithText:(NSString*)text delay:(int)delay
+{
+    _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    _hud.labelText = text;
+    [_hud show:YES];
+    [_hud hide:YES afterDelay:delay];
 }
 
 
@@ -103,15 +118,8 @@
     // TODO Very dirty, think of a better way 
     if(_isChecking){
         [self stopChecking];
-        [self.progressView setHidden:YES];
-        self.progressView.progress = 0.0;
-        [_resetButton setTitle:@"开始检查" forState:UIControlStateNormal];
-        _resetButton.tintColor = [UIColor brownColor];
     }else{
         [self startChecking];
-        [self.progressView setHidden:NO];
-        [_resetButton setTitle:@"结束检查" forState:UIControlStateNormal];
-        _resetButton.tintColor = [UIColor blueColor];
     }
 }
 
@@ -159,7 +167,6 @@
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [PCKCommon tableBackground];
     [self.view addSubview:self.tableView];
-
 }
 
 - (void)loadNavBar
@@ -171,7 +178,7 @@
                                                                                  action: @selector (addItemLaunch)];
     UIBarButtonItem *editLauncher = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
                                                                                   target: self
-                                                                                  action: @selector (switchEdit)];    
+                                                                                  action: @selector (switchEdit)];
     self.navigationItem.rightBarButtonItems = @[editLauncher,addLauncher];
 }
 
@@ -209,6 +216,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if ([_checkList isChecking]) {
+        for (PCKItem* item in [_checkList checkedItems]) {
+            [_checkedItems addObject:@(item.itemId)];
+        }
+        [self showChecking];
+        [self updateProgress];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -247,12 +261,12 @@
         cell.textLabel.font = [UIFont boldSystemFontOfSize: 18];
         [cell.textLabel setShadowOffset:CGSizeMake(0.0, -0.6)];
         cell.textLabel.backgroundColor = [UIColor clearColor];
-        cell.badgeColorHighlighted = [UIColor whiteColor];
+//        cell.badgeColorHighlighted = [UIColor whiteColor];
         cell.delegate = self;
     }
 
-    cell.badgeString = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-    cell.badgeColor = indexPath.row < 3? [UIColor redColor]:[UIColor colorWithRed:0.530f green:0.600f blue:0.738f alpha:1.000f];
+//    cell.badgeString = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+//    cell.badgeColor = indexPath.row < 3? [UIColor redColor]:[UIColor colorWithRed:0.530f green:0.600f blue:0.738f alpha:1.000f];
     
     PCKItem * item = [_items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.name;
@@ -320,10 +334,7 @@
         self.progressView.progress = [_checkedItems count] == [_items count]? 0.99 : [_checkedItems count]/(float)[_items count];
         
         if([_checkedItems count] == [_items count]){
-            _hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
-            _hud.labelText = @"全部搞定！出发吧！";
-            [_hud show:YES];
-            [_hud hide:YES afterDelay:2];
+            [self showHudWithText:@"全部搞定！出发吧！" delay:2];
             [MobClick event:EVENT_CHECKED];
         }
     }
@@ -333,15 +344,26 @@
 #pragma PCKCheckItemCellSlideDelegate
 - (void)cellDidHide:(PCKCheckItemCell *)cell
 {
-    [_checkedItems addObject:[NSNumber numberWithInt:cell.item.itemId]];
-    [self updateProgress];
+    [self checkItem:cell.item];
 }
 
 - (void)cellDidUnhide:(PCKCheckItemCell *)cell
 {
-    [_checkedItems removeObject:[NSNumber numberWithInt:cell.item.itemId]];
+    [self uncheckItem:cell.item];
+}
+
+- (void)checkItem:(PCKItem*) item
+{
+    [_checkList checkItemWithId:item.itemId];
+    [_checkedItems addObject:[NSNumber numberWithInt:item.itemId]];
     [self updateProgress];
 }
 
+- (void)uncheckItem:(PCKItem*) item
+{
+    [_checkList uncheckItemWithId:item.itemId];
+    [_checkedItems removeObject:[NSNumber numberWithInt:item.itemId]];
+    [self updateProgress];
+}
 
 @end

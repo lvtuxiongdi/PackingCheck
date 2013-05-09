@@ -1,6 +1,8 @@
 #define __MainScreenFrame   [[UIScreen mainScreen] bounds]
 #define __MainScreen_Width  __MainScreenFrame.size.width
 #define __MainScreen_Height __MainScreenFrame.size.height-20
+#define ITEM_CHECKED 1
+#define ITEM_UNCHECKED 2
 
 extern NSString *const DB_PATH;
 

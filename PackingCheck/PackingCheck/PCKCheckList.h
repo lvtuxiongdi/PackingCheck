@@ -17,11 +17,15 @@
 - (id)initWithId:(int)listId name:(NSString*)name imageName:(NSString*)imageName;
 - (void)increaseOpens;
 - (NSMutableArray*) items;
+- (NSMutableArray*) checkedItems;
 - (void)addItems:(NSArray*)items;
 - (void)removeItemWithId:(int)itemId;
 - (void)reorderItems:(NSArray*)items;
 - (NSString *)i18nName;
-
+- (void)checkItemWithId:(int)itemId;
+- (void)uncheckItemWithId:(int)itemId;
+- (void)uncheckAllItems;
+- (BOOL)isChecking;
 
 + (void)removeById:(int)listId;
 + (NSMutableArray*) all;
